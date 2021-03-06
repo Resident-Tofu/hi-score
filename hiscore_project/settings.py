@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'hiscore.urls'
+ROOT_URLCONF = 'hiscore_project.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'hiscore.wsgi.application'
+WSGI_APPLICATION = 'hiscore_project.wsgi.application'
 
 
 # Database
