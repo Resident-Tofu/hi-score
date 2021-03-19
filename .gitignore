@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# Team 3a project-specific
+/hi_score/migrations/*
