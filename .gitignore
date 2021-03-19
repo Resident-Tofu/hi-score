@@ -130,4 +130,4 @@ dmypy.json
 
 
 # Team3a project-specific
-#/hi_score/migrations/*
+/hi_score/migrations/*
