@@ -25,43 +25,49 @@ def populate():
 
     game_pages = [
         {
-            "name" : "Crash Bandicoot",
+            "name": "Crash Bandicoot",
             "genres": { "Platformer" },
-            "desc" : "The orange marsupial jumps through platforming challenges."
+            "desc": "The orange marsupial jumps through platforming challenges.",
         },
         {
-            "name" : "The Witness",
+            "name": "The Witness",
             "genres": { "Puzzle" },
-            "desc" : "Solve the mystery of the island by tracing lines on panels."
+            "desc": "Solve the mystery of the island by tracing lines on panels.",
         },
         { 
-            "name" : "Rayman",
+            "name": "Rayman",
             "genres": { "Platformer", "Adventure" },
-            "desc" : "Save the world as the limbless hero."
+            "desc": "Save the world as the limbless hero.",
         },
         {
-            "name" : "Uncharted",
-            "desc" : "Nathan Drake globetrots for treasure."
+            "name": "Uncharted",
+            "genres": { "Action", "Adventure", "Shooter" },
+            "desc": "Nathan Drake globetrots for treasure.",
         },
         {
             "name" : "Halo",
             "genres": { "Action", "Shooter" },
-            "desc" : "Shoot aliens on a big ring."
+            "desc" : "Shoot aliens on a big ring.",
         },
         {
             "name" : "Wipeout",
             "genres": { "Racing" },
-            "desc" : "Zip through gravity-defying courses in this futuristic racer."
+            "desc" : "Zip through gravity-defying courses in this futuristic racer.",
         },
         {
             "name" : "Warcraft",
             "genres": { "Strategy" },
-            "desc" : "Vanquish your foes by commanding units in this timeless classic."
+            "desc" : "Vanquish your foes by commanding units in this timeless classic.",
         },
         {
             "name" : "Tekken",
             "genres": { "Fighting" },
-            "desc" : "Beat up all others in the Iron Fist Tournament."
+            "desc" : "Beat up all others in the Iron Fist Tournament.",
+        },
+        {
+            "name" : "Doom Eternal",
+            "genres": { "Action", "Shooter" },
+            "desc" : "Give those demons Hell.",
         },
     ]
 
@@ -88,7 +94,8 @@ def populate():
             "rating": 5,
             "likes": 666,
             "dislikes": 9,
-            "body": "SHOOT BIG GUN MAKE DEMONS GO EXPLODEY THIS GAME IS THE GOAT"
+            "body": "SHOOT BIG GUN MAKE DEMONS GO EXPLODEY THIS GAME IS THE GOAT",
+            "ytlink": "https://youtu.be/_bA3nM_v2eU"
         },
     ]
 
@@ -99,14 +106,19 @@ def populate():
 
     # Create the game pages
     for game in game_pages:
-        g = Game(name = game["name"], desc = game["desc"])
+        g = Game.objects.get_or_create(name = game["name"], desc = game["desc"])[0]
         for genre in game["genres"]:
-            g.genres.add(genre)
+            g.genres.add(Genre.objects.get(name = genre))
+        g.save()
 
     # Create the reviews
     for review in reviews:
-        pass
-
+        r = Review(title = review["title"], game = Game.objects.get(name = review["game"]), rating = review["rating"])
+        r.body = review.get("body", "")
+        r.likes = review.get("likes", 0)
+        r.dislikes = review.get("dislikes", 0)
+        r.ytlink = review.get("ytlink") # Optional, check for None or NULL
+        r.save()
 
 
 # Execution

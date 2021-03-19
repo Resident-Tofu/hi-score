@@ -37,7 +37,7 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField()
     likes = models.PositiveIntegerField()
     dislikes = models.PositiveIntegerField()
-    ytlink = models.CharField(max_length = 256) # Maybe change?
+    ytlink = models.CharField(max_length = 256, null = True) # Maybe change?
 
     def __str__(self):
         return self.title
