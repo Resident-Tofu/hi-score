@@ -37,7 +37,13 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField()
     likes = models.PositiveIntegerField()
     dislikes = models.PositiveIntegerField()
-    ytlink = models.CharField(max_length = 256, null = True) # Maybe change?
+    ytlink = models.URLField(default = None, null = True, unique = True) # Validate using forms
+    captions = models.BooleanField(default = False) # If true, use video captions as body of review
 
+    def save(self, *args, **kwargs):
+        if self.ytlink == "":
+            self.ytlink = None
+        super(Review, self).save(*args, **kwargs)
+    
     def __str__(self):
         return self.title
