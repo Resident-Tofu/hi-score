@@ -33,8 +33,13 @@ def show_games(request):
 	return response
 
 def show_game(request, game_name_slug):
+	game = Game.objects.get(slug = game_name_slug)
 	context_dict = {}
-	review_list = Review.objects.filter()
+	context_dict["name"] = game.name
+	#context_dict["genres"] = game.genres
+	context_dict["desc"] = game.desc
+	review_list = Review.objects.filter(game = game)
+	context_dict["reviews"] = review_list
 
 	return render(request, 'hi-score/game.html', context=context_dict)
 
