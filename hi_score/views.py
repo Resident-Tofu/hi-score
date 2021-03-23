@@ -53,12 +53,18 @@ def add_genre(request):
 	return render(request, 'hi-score/add_genre')
 
 def show_genre(request, genre_name_slug):
-	genre_info = None#Genre.name
-	game_list = None#Game.objects.get(genre = genre.name)
+	#genre_info = None#Genre.name
+	#game_list = None#Game.objects.get(genre = genre.name)
 	context_dict = {}
-	context_dict['genre'] = genre_info
-	context_dict['games'] = game_list
-	return render(request, 'hi-score/genre', context=context_dict)
+	try:
+		genre = Genre.objects.get(slug = genre_name_slug)
+		games = Game.objects.filter(genre = genre)
+		context_dict['genre'] = genre_info
+		context_dict['games'] = game_list
+	except Genre.DoesNotExist:
+		context_dict['genre'] = None
+		context_dict['games'] = None
+	return render(request, 'hi-score/genre.html', context=context_dict)
 
 def signup(request):
 	return HttpResponse("This is the signup page")

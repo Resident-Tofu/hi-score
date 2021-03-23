@@ -6,7 +6,7 @@
 <p>Hello</p>
 
 <div class="genrelist">
-{% if categories %}
+{% if genres %}
     <ul>
     {% for genre in genres %}
         <li>
@@ -17,5 +17,6 @@
 {% else %}
     <strong>There are no genres yet.  Add the first!</strong>
 {% endif %}
+</div>
 
 {% endblock %}
