@@ -14,13 +14,6 @@ class GenreForm(forms.ModelForm):
 
 class GameForm(forms.ModelForm):
 	pass
-#  	user = forms.OneToOneField(User, on_delete = models.CASCADE)
-#     username = forms.CharField(max_length = 32)
-#     password = forms.CharField(max_length = 32)
-#     picture = forms.ImageField(upload_to = 'profile_images', blank = True)
-#     aboutme = forms.TextField(blank = True)
-#     datejoined = forms.DateField()
-#     rating = forms.DecimalField(decimal_places = 2, max_digits = 3)
 
 class UserForm(forms.ModelForm):
 	pass

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.urls import reverse
 from hi_score.models import Genre
 from hi_score.models import Game
 from hi_score.models import Review
@@ -33,8 +35,13 @@ def show_games(request):
 	return response
 
 def show_game(request, game_name_slug):
+	game = Game.objects.get(slug = game_name_slug)
 	context_dict = {}
-	review_list = Review.objects.filter()
+	context_dict["name"] = game.name
+	#context_dict["genres"] = game.genres
+	context_dict["desc"] = game.desc
+	review_list = Review.objects.filter(game = game)
+	context_dict["reviews"] = review_list
 
 	return render(request, 'hi-score/game.html', context=context_dict)
 
@@ -52,7 +59,21 @@ def show_genres(request):
 	return render(request, 'hi-score/genres.html', context=context_dict)
 
 def add_genre(request):
-	return render(request, 'hi-score/add_genre.html')
+	form = GenreForm()
+
+	# A HTTP POST?
+	if request.method == 'POST':
+		form = GenreForm(request.POST)
+
+	if form.is_valid():
+		form.save(commit=True)
+		return redirect('/hi-score/')
+
+	else:
+		# Form had errors, print to terminal
+		print(form.errors)
+
+	return render(request, 'hi-score/add_genre.html', {'form': form})
 
 def show_genre(request, genre_name_slug):
 	#genre_info = None#Genre.name
