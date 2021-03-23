@@ -67,13 +67,14 @@ def add_genre(request):
 
 	if form.is_valid():
 		form.save(commit=True)
-		return redirect('/hi-score/')
+		return redirect(reverse('hi-score:genres'))
 
 	else:
 		# Form had errors, print to terminal
 		print(form.errors)
 
 	return render(request, 'hi-score/add_genre.html', {'form': form})
+
 
 def show_genre(request, genre_name_slug):
 	#genre_info = None#Genre.name
