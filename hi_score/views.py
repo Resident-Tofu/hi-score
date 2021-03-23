@@ -5,17 +5,13 @@ from hi_score.models import Game
 from hi_score.models import Review
 
 def index(request):
-	# Context Dict
-	# -Top 10 genres
-	# -Top 5 newest/best games
 	genre_list = Genre.objects.order_by("-name")[:10]
 	game_list = Game.objects.order_by("-name")[:5]
 	context_dict = {}
 	context_dict["genres"] = genre_list
 	context_dict["games"] = game_list
-	response = render(request, 'hi-score/index.html', context=context_dict)
+	response = render(request, "hi-score/home.html", context=context_dict)
 	return response
-	# return HttpResponse("hi")
 
 def about(request):
 	return render(request, 'hi-score/about.html')
