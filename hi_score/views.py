@@ -1,40 +1,64 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from hi_score.models import Genre
+from hi_score.models import Game
+from hi_score.models import Review
 
 def index(request):
-	return HttpResponse("This is the home Page!")
+	genre_list = Genre.objects.order_by("-name")[:10]
+	game_list = Game.objects.order_by("-name")[:5]
+	context_dict = {}
+	context_dict["genres"] = genre_list
+	context_dict["games"] = game_list
+	response = render(request, "hi-score/home.html", context=context_dict)
+	return response
 
 def about(request):
-	return HttpResponse("This is the about page")
+	return render(request, 'hi-score/about.html')
 
 def faq(request):
-	return HttpResponse("This is the Frequently asked questions")
+	return render(request, 'hi-score/faq.html')
 
 def contact_us(request):
-	return HttpResponse("This is the contact-us page")
+	return render(request, 'hi-score/contact_us.html')
 
 def show_games(request):
-	return HttpResponse("This is the games page")
+	game_list = Game.objects.order_by("-name")
+	for i in game_list:
+		print(i.name)
+	context_dict = {"games": game_list}
+	response = render(request, 'hi-score/games.html', context=context_dict)
+	return response
 
 def show_game(request, game_name_slug):
-	return HttpResponse(f"This is the page for {game_name_slug}")
+	context_dict = {}
+	review_list = Review.objects.filter()
+
+	return render(request, 'hi-score/game.html', context=context_dict)
 
 # Login Required
 def review_game(request, game_name_slug):
-	return HttpResponse(f"This is the {game_name_slug} review page")
+	return render(request, 'hi-score/review_game')
 
 # Login Required
 def add_game(request):
-	return HttpResponse("This is the add game page")
+	return render(request, 'hi-score/add_game')
 
 def show_genres(request):
-	return HttpResponse("This is the genres page")
+	genre_list = Genre.objects.order_by('-name')
+	context_dict = {'genres': genre_list}
+	return render(request, 'hi-score/genres', context=context_dict)
 
 def add_genre(request):
-	return HttpResponse("This is the add genre pages")
+	return render(request, 'hi-score/add_genre')
 
 def show_genre(request, genre_name_slug):
-	return HttpResponse(f"This is the {genre_name_slug} genre page")
+	genre_info = None#Genre.name
+	game_list = None#Game.objects.get(genre = genre.name)
+	context_dict = {}
+	context_dict['genre'] = genre_info
+	context_dict['games'] = game_list
+	return render(request, 'hi-score/genre', context=context_dict)
 
 def signup(request):
 	return HttpResponse("This is the signup page")
