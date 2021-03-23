@@ -51,7 +51,21 @@ def review_game(request, game_name_slug):
 
 # Login Required
 def add_game(request):
-	return render(request, 'hi-score/add_game.html')
+	form = GameForm()
+
+	# A HTTP POST?
+	if request.method == 'POST':
+		form = GameForm(request.POST)
+
+	if form.is_valid():
+		form.save(commit=True)
+		return redirect(reverse('hi-score:show_games'))
+
+	else:
+		# Form had errors, print to terminal
+		print(form.errors)
+
+	return render(request, 'hi-score/add_game.html', {'form': form})
 
 def show_genres(request):
 	genre_list = Genre.objects.order_by('-name')
