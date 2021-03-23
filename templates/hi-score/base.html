@@ -14,9 +14,9 @@
 	 		<h1>Hi-Score</h1>
 	 	</div>
 	 	<div class="homeBar">
-	 		<li><a href="#home">Home</a></li>
-	 		<li><a href="#genres">Genres</a></li>
-	 		<li><a href="#Games">Games</a></li>
+	 		<li><a href="{% url 'hi-score:home' %}">Home</a></li>
+	 		<li><a href="{% url 'hi-score:genres' %}">Genres</a></li>
+	 		<li><a href="{% url 'hi-score:show_games' %}">Games</a></li>
 	 	</div>
 	 	<div class="logo">
 	 		<img src="{% static 'images/logo.png' %}" alt="Hi-Score" style="width:200px;height:120px">
@@ -30,4 +30,11 @@
 	 	<div class="login">
 	 		<h2><u>Login</u></h2>
 	 	</div>
+
+	 	<div>
+        {% block body_block %}
+        {% endblock %}
+        </div>
+
 	 </body> 
+</html>

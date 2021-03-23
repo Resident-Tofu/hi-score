@@ -38,27 +38,33 @@ def show_game(request, game_name_slug):
 
 # Login Required
 def review_game(request, game_name_slug):
-	return render(request, 'hi-score/review_game')
+	return render(request, 'hi-score/review_game.html')
 
 # Login Required
 def add_game(request):
-	return render(request, 'hi-score/add_game')
+	return render(request, 'hi-score/add_game.html')
 
 def show_genres(request):
 	genre_list = Genre.objects.order_by('-name')
 	context_dict = {'genres': genre_list}
-	return render(request, 'hi-score/genres', context=context_dict)
+	return render(request, 'hi-score/genres.html', context=context_dict)
 
 def add_genre(request):
-	return render(request, 'hi-score/add_genre')
+	return render(request, 'hi-score/add_genre.html')
 
 def show_genre(request, genre_name_slug):
-	genre_info = None#Genre.name
-	game_list = None#Game.objects.get(genre = genre.name)
+	#genre_info = None#Genre.name
+	#game_list = None#Game.objects.get(genre = genre.name)
 	context_dict = {}
-	context_dict['genre'] = genre_info
-	context_dict['games'] = game_list
-	return render(request, 'hi-score/genre', context=context_dict)
+	try:
+		genre = Genre.objects.get(slug = genre_name_slug)
+		games = Game.objects.filter(genres = genre)
+		context_dict['genre'] = genre
+		context_dict['games'] = games
+	except Genre.DoesNotExist:
+		context_dict['genre'] = None
+		context_dict['games'] = None
+	return render(request, 'hi-score/genre.html', context=context_dict)
 
 def signup(request):
 	return HttpResponse("This is the signup page")

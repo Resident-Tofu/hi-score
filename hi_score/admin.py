@@ -9,11 +9,13 @@ class GameInline(admin.TabularInline):
     extra = 1
 
 class GenreAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
     inlines = [
         GameInline,
     ]
 
 class GameAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
     inlines = [
         GameInline,
     ]
@@ -21,5 +23,5 @@ class GameAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Genre, GenreAdmin)
-admin.site.register(Game)
+admin.site.register(Game, GameAdmin)
 admin.site.register(Review, ReviewAdmin)
