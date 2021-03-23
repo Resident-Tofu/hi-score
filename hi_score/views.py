@@ -58,9 +58,9 @@ def show_genre(request, genre_name_slug):
 	context_dict = {}
 	try:
 		genre = Genre.objects.get(slug = genre_name_slug)
-		games = Game.objects.filter(genre = genre)
-		context_dict['genre'] = genre_info
-		context_dict['games'] = game_list
+		games = Game.objects.filter(genres = genre)
+		context_dict['genre'] = genre
+		context_dict['games'] = games
 	except Genre.DoesNotExist:
 		context_dict['genre'] = None
 		context_dict['games'] = None
