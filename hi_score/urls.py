@@ -3,21 +3,6 @@ from hi_score import views
 
 app_name = 'hi-score'
 
-'''
-/home 
-/contact-us 
-/faq 
-/games
-	/games/add-game 
-	/games/game
-		/games/game/review-game 
-/genres
-/genres/genre 
-/signup
-/login
-/login/myaccount
-'''
-
 urlpatterns = [
     path('', views.index, name='home'),
     path('about/', views.about, name='about'),
