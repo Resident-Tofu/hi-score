@@ -38,19 +38,19 @@ def show_game(request, game_name_slug):
 
 # Login Required
 def review_game(request, game_name_slug):
-	return render(request, 'hi-score/review_game')
+	return render(request, 'hi-score/review_game.html')
 
 # Login Required
 def add_game(request):
-	return render(request, 'hi-score/add_game')
+	return render(request, 'hi-score/add_game.html')
 
 def show_genres(request):
 	genre_list = Genre.objects.order_by('-name')
 	context_dict = {'genres': genre_list}
-	return render(request, 'hi-score/genres', context=context_dict)
+	return render(request, 'hi-score/genres.html', context=context_dict)
 
 def add_genre(request):
-	return render(request, 'hi-score/add_genre')
+	return render(request, 'hi-score/add_genre.html')
 
 def show_genre(request, genre_name_slug):
 	#genre_info = None#Genre.name

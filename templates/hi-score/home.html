@@ -3,20 +3,6 @@
 
 {% block body_block %}
         
-<p>Hello</p>
-
-<div class="genrelist">
-{% if genres %}
-    <ul>
-    {% for genre in genres %}
-        <li>
-            <a href="{% url 'hi-score:show_genre' genre.slug %}">{{ genre.name }}</a>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <strong>There are no genres yet.  Add the first!</strong>
-{% endif %}
-</div>
+<p>Hello -- this is the front page</p>
 
 {% endblock %}

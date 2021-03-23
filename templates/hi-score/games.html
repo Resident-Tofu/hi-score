@@ -1,0 +1,19 @@
+{% extends 'hi-score/base.html' %}
+
+{% block body_block %}
+
+<div class="gamelist">
+{% if games %}
+    <ul>
+    {% for game in games %}
+        <li>
+            <a href="{% url 'hi-score:show_game' game.slug %}">{{ game.name }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <strong>There are no games yet.  Add the first!</strong>
+{% endif %}
+</div>
+
+{% endblock %}
