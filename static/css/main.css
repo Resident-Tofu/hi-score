@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+body{
+	background-color: #000000;
+	color: #5900B3;
+	font-family: "DotGothic16";
+
+}
+.links{
+	color: #3ba3ff;
+	text-decoration: underline;
+}
+.header{
+	padding: 10px;
+	text-align: center;
+	font-size: 35px;
+	color: #5900B3;
+	position: relative;
+	top: -70px;
+}
+.homeBar{
+	text-align: center;
+	color: #5900B3;
+	position: relative;
+	top: -100px;
+	left: 33%;
+	width: 33%;
+	font-size: 20px; 
+}
+li {
+  list-style-type: none;
+  float: left;
+  text-align:center;
+   width: 33%;
+  color: #5900B3;
+}
+.search{
+	position: relative;
+	float: right;
+	top: -220px;
+	right: 110px;
+	font-size:20px; 
+}
+
+.logo{
+	position: relative;
+	top: -200px;
+	left: -25%;
+}
+
+.footer{
+	position: fixed;
+	left: 0;
+	bottom: 10px;
+	width: 100%;
+	color: #5900B3;
+	text-align: center;
+	text-decoration: underline;
+}
+
+.login{
+	position: relative;
+	float: right;
+	top: -200px;
+	right: -20px;
+	font-size:20px; 
+} 
