@@ -1,0 +1,27 @@
+{% extends 'hi-score/base.html' %}
+{% load static %}
+
+{% block title_block %}
+	Enlist
+{% endblock %}
+
+{% block body_block %}
+	<h1>Enlist for Hi-Score</h1>
+	{% if registered %}
+		<strong>You have enlisted successfully!</strong> 
+		<a href="{% url 'hi-score:index' %}">Return to the homepage.</a><br/>
+	{% else %}
+		<strong>enlist here!</strong><br />
+		<form id="user_form" method="post" action="{% url 'hi-score:enlist' %}" 
+		enctype="multipart/form-data">
+
+		{% csrf_token %}
+
+		{{ user_form.as_p }}
+		{{ profile_form.as_p }}
+
+		<input type="submit" name="submit" value="Register" /> 
+	</form>
+	{% endif %}
+
+{% endblock %}

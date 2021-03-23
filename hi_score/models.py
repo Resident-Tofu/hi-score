@@ -3,18 +3,18 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
 
-# class User(models.Model):
-#     # Review User class
-#     user = models.OneToOneField(User, on_delete = models.CASCADE)
-#     username = models.CharField(max_length = 32)
-#     password = models.CharField(max_length = 32)
-#     picture = models.ImageField(upload_to = 'profile_images', blank = True)
-#     aboutme = models.TextField(blank = True)
-#     datejoined = models.DateField()
-#     rating = models.DecimalField(decimal_places = 2, max_digits = 3)
+class User(models.Model):
+    # Review User class
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    username = models.CharField(max_length = 32)
+    password = models.CharField(max_length = 32)
+    picture = models.ImageField(upload_to = 'profile_images', blank = True)
+    aboutme = models.TextField(blank = True)
+    datejoined = models.DateField()
+    rating = models.DecimalField(decimal_places = 2, max_digits = 3)
 
-#     def __str__(self):
-#         return self.user.username
+    def __str__(self):
+        return self.user.username
 
 class Genre(models.Model):
     name = models.CharField(max_length = 32, unique = True)

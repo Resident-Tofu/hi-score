@@ -130,3 +130,4 @@ dmypy.json
 
 # Team 3a project-specific
 /hi_score/migrations/*
+'.DS_Store'
