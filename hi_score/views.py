@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
 from hi_score.models import Genre
 from hi_score.models import Game
 from hi_score.models import Review
@@ -144,7 +145,7 @@ def signup(request):
 		profile_form = UserProfileForm()
 
 	return render(request,
-			'hi-score/register.html',
+			'hi-score/enlist.html',
 			context = {'user_form': user_form,
 					   'profile_form': profile_form,
 					   'registered': registered})

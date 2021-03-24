@@ -12,7 +12,7 @@
 		<a href="{% url 'hi-score:index' %}">Return to the homepage.</a><br/>
 	{% else %}
 		<strong>enlist here!</strong><br />
-		<form id="user_form" method="post" action="{% url 'hi-score:enlist' %}" 
+		<form id="user_form" method="post" action="{% url 'hi-score:signup' %}" 
 		enctype="multipart/form-data">
 
 		{% csrf_token %}
