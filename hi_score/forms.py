@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from hi_score.models import Game, Genre, Review
+from hi_score.models import Game, Genre, Review, UserProfile
 from hi_score.models import User
 
 
@@ -34,4 +34,4 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
-		fields = ('aboutme', 'picture', )
+		fields = ('aboutme', 'picture', 'datejoined', 'rating')

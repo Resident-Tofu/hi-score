@@ -9,7 +9,7 @@
 	<h1>Enlist for Hi-Score</h1>
 	{% if registered %}
 		<strong>You have enlisted successfully!</strong> 
-		<a href="{% url 'hi-score:index' %}">Return to the homepage.</a><br/>
+		<a href="{% url 'hi-score:home' %}">Return to the homepage.</a><br/>
 	{% else %}
 		<strong>enlist here!</strong><br />
 		<form id="user_form" method="post" action="{% url 'hi-score:signup' %}" 
