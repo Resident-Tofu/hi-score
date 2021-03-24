@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from hi_score.models import Genre
 from hi_score.models import Game
 from hi_score.models import Review
@@ -50,7 +51,7 @@ def show_game(request, game_name_slug):
 def review_game(request, game_name_slug):
 	return render(request, 'hi-score/review_game.html')
 
-# Login Required
+@login_required
 def add_game(request):
 	form = GameForm()
 
@@ -73,6 +74,8 @@ def show_genres(request):
 	context_dict = {'genres': genre_list}
 	return render(request, 'hi-score/genres.html', context=context_dict)
 
+
+@login_required
 def add_genre(request):
 	form = GenreForm()
 
@@ -150,7 +153,6 @@ def signup(request):
 					   'profile_form': profile_form,
 					   'registered': registered})
 
-
 def user_login(request):
 	if request.method == 'POST':
 		username = request.POST.get('username')
@@ -173,12 +175,12 @@ def user_login(request):
 	else:
 		return render(request, 'hi-score/login.html')
 
-# Login Required
+@login_required
 def user_logout(request):
 	logout(request)
 	return redirect(reverse('hi-score:home'))
 
-# Login Required
+@login_required
 def show_account(request):
 	return HttpResponse("This is the myaccount page")
 
