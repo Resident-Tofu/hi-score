@@ -159,27 +159,29 @@ def signup(request):
 					   'profile_form': profile_form,
 					   'registered': registered})
 
-def user_login(request):
+def user_login(request):	
 	if request.method == 'POST':
 		username = request.POST.get('username')
 		password = request.POST.get('password')
 
 		# Check if username/password combination is valid, returns a User obj
 		user = authenticate(username=username, password=password)
-
 		# If above was valid
 		if user:
 			if user.is_active:
 				login(request, user)
 				return redirect(reverse('hi-score:home'))
 			else:
-				return HttpResponse('Your Hi-Score account is disabled.')
+				message = "Your hi-score account has been disabled"
 		else:
 			# Bad login details were provided
 			print(f'Invalid login details {username}, {password}')
-			return HttpResponse('Invalid login details supplied.')
+			message = "Invalid login details!"
 	else:
-		return render(request, 'hi-score/login.html')
+		message = None
+		
+	context_dict = {'message' : message}
+	return render(request, 'hi-score/login.html', context=context_dict)
 
 @login_required
 def user_logout(request):
