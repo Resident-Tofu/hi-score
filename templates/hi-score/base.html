@@ -21,7 +21,7 @@
 	 		<li><a href="{% url 'hi-score:show_games' %}">Games</a></li>
 	 	</div>
 	 	<div class="logo">
-	 		<img src="{% static 'images/logo.png' %}" alt="Hi-Score" style="width:200px;height:120px">
+	 		<img src="{% static 'images/logo.png' %}" alt="Hi-Score" style="width:160px;height:80px">
 	 	</div>
 	 	<div class="search">
 	 		<input type="text" placeholder="Search..." name="search" style="width:200px;height:30px">
@@ -31,11 +31,11 @@
 	 	</div>
 	 	<div class="login">
 	 		{% if user.is_authenticated %}
-	 			<h2>You are logged in!</h2>
-	 			<h2><u><a href="{% url 'hi-score:logout' %}">Logout</a></u></h2>
+	 			<h3>You are logged in!</h3>
+	 			<h4><u><a href="{% url 'hi-score:logout' %}">Logout</a></u></h4>
 	 		{% else %}
-	 			<h2><u><a href="{% url 'hi-score:user_login' %}">Login</a></u></h2>
-	 			<h2><u><a href="{% url 'hi-score:signup' %}">Enlist</a></u></h2>
+	 			<h4><u><a href="{% url 'hi-score:user_login' %}">Login</a></u></h4>
+	 			<h4><u><a href="{% url 'hi-score:signup' %}">Enlist</a></u></h4>
 	 		{% endif %}
 
 	 	</div>
