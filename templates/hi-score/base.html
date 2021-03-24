@@ -28,8 +28,14 @@
 	 		<a href="#Contact-Us" style="color: #5900B3">Contact Us</a>
 	 	</div>
 	 	<div class="login">
+	 		{% if user.is_authenticated %}
+	 			<h2>You are logged in!</h2>
+	 			<h2><u><a href="{% url 'hi-score:logout' %}">Logout</a></u></h2>
+	 		{% else %}
+	 			<h2><u><a href="{% url 'hi-score:user_login' %}">Login</a></u></h2>
+	 			<h2><u><a href="{% url 'hi-score:signup' %}">Enlist</a></u></h2>
+	 		{% endif %}
 
-	 		<h2><u><a href="{% url 'hi-score:user_login' %}">Login</a></u></h2>
 	 	</div>
 
 	 	<div>

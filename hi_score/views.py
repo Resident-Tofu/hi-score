@@ -174,9 +174,12 @@ def user_login(request):
 		return render(request, 'hi-score/login.html')
 
 # Login Required
+def user_logout(request):
+	logout(request)
+	return redirect(reverse('hi-score:home'))
+
+# Login Required
 def show_account(request):
 	return HttpResponse("This is the myaccount page")
 
-# Login Required
-def user_logout(request):
-	return HttpResponse("This is the user-logout view")
+
