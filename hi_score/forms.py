@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from hi_score.models import Game, Genre, Review
+from hi_score.models import Game, Genre, Review, UserProfile
 from hi_score.models import User
 
 
@@ -24,7 +24,14 @@ class GameForm(forms.ModelForm):
 		fields = ('name', 'desc')
 
 class UserForm(forms.ModelForm):
-	pass
+	username = forms.CharField(max_length = 64, help_text='Username')
+	password = forms.CharField(widget=forms.PasswordInput())
+
+	class Meta:
+		model = User
+		fields = ('username', 'password', )
 
 class UserProfileForm(forms.ModelForm):
-	pass
+	class Meta:
+		model = UserProfile
+		fields = ('aboutme', 'picture', 'datejoined', 'rating')
