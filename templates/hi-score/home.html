@@ -3,6 +3,8 @@
 
 {% block body_block %}
         
-<p>Hello -- this is the front page</p>
+<p>Hello {{ user.get_username }}-- this is the front page</p>
+
+
 
 {% endblock %}

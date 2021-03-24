@@ -24,7 +24,7 @@ class GameForm(forms.ModelForm):
 		fields = ('name', 'desc')
 
 class UserForm(forms.ModelForm):
-	username = forms.CharField(max_length = 64, help_text='Username')
+	username = forms.CharField(max_length = 64)
 	password = forms.CharField(widget=forms.PasswordInput())
 
 	class Meta:
@@ -34,4 +34,4 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
-		fields = ('aboutme', 'picture', 'datejoined', 'rating')
+		fields = ('aboutme', 'picture', )

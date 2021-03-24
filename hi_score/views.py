@@ -1,3 +1,4 @@
+from datetime import date
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -16,6 +17,7 @@ def index(request):
 	context_dict = {}
 	context_dict["genres"] = genre_list
 	context_dict["games"] = game_list
+	context_dict["user"] = request.user
 	response = render(request, "hi-score/home.html", context=context_dict)
 	return response
 
@@ -119,6 +121,8 @@ def signup(request):
 		profile_form = UserProfileForm(request.POST)
 
 		if user_form.is_valid() and profile_form.is_valid():
+			
+			dateJoined = date.today()
 			# Save the form data to the database
 			user = user_form.save()
 
@@ -130,6 +134,8 @@ def signup(request):
 			# Create the one-to-one relationship between the profile and user
 			profile = profile_form.save(commit=False)
 			profile.user = user
+			profile.datejoined = dateJoined
+			profile.rating = 1.2
 
 			# If user uploaded a picture, add it, then save profile to db
 			if 'picture' in request.FILES:
