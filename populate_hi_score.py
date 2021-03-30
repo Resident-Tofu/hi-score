@@ -135,7 +135,7 @@ def populate():
             g.genres.add(Genre.objects.get(name = genre))
         g.save()
 
-    Create the reviews
+    # Create the reviews
     for review in reviews:
         r = Review(title = review["title"], game = Game.objects.get(name = review["game"]))
         r.rating = review.get("rating", 3) #review["rating"]
