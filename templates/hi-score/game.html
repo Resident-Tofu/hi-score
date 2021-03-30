@@ -4,9 +4,9 @@
 
 {% block style_block %}
     .review {
-        background-color: purple;
+        background-color: #5900B3;
         border: 2px solid gray;
-        color: black;
+        color: white;
         margin: 10px;
     }
 
@@ -18,9 +18,10 @@
     }
 
     .rtext {
-        clear: left;
+        clear: none;
         right: 20%;
     }
+
 {% endblock %}
 
 {% block body_block %}
@@ -42,19 +43,18 @@
                         <img src = "{% static 'hi-score/profile.png' %}" alt="Profile Pic" style="width:60px;height:60px">
                     {% endif %}
                     
-                    <h3>Reviewer: {{ review.user.get_username}}</h3>
+                    <h3>{{ review.user.get_username}}</h3>
 
-                    <h5>Date: {{ review.date }}</h5>
+                    </h5>{{ review.date }}</h5>
                 </div>
                 <div class="rtext">
                     <h2>{{ review.title }}</h2>
-                    {# source for this loop code: https://pythoncircle.com/post/685/for-loop-in-django-template/ #}
-                    <h2 id="stars{{ review.title }}">&#11088;</h2>
+                    <h2 id="stars{{ review.rating }}">&#11088; {{ review.rating }} </h2>
                     <p>{{ review.body }}</p>
-                    <p>Likes: {{ review.likes }}, Dislikes: {{ review.dislikes }}</p>
+                    <p>{{ review.likes }}&#11014;     {{ review.dislikes }}&#11015:</p>
 
-                    {% if review.ytlink %}
-                    <iframe width="560" height="315" src={{ review.embed }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {% if review.embed %}
+                        <iframe width="500" height="281" src={{ review.embed }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     {% endif %}
                 </div>
             </div>

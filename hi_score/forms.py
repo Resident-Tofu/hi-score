@@ -26,10 +26,11 @@ class GameForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
 	title = forms.CharField(help_text="Review Title:")
 	rating = forms.IntegerField(help_text = "Rating: ")
+	ytlink = forms.URLField(help_text = "Youtube Link")
 
 	class Meta:
 		model = Review
-		fields = ('title', 'body', 'rating', )
+		fields = ('title', 'body', 'rating', 'ytlink' )
 
 class UserForm(forms.ModelForm):
 	username = forms.CharField(max_length = 64)
