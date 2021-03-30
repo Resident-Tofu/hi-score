@@ -1,0 +1,22 @@
+{% extends 'hi-score/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    MyAccount
+{% endblock %}
+
+
+{% block body_block %}
+
+    {% if user.userprofile.picture %} 
+        <img src="{{ user.userprofile.picture.url }}" alt="Profile Pic" style="width:80px;height:80px">
+    {% else %}
+        <img src="{% static 'images/profile.png' %}" alt="Hi-Score" style="width:80px;height:80px">
+    {% endif %}
+
+    <h2>{{ user.get_username}}</h2>
+
+    {{ user.userprofile.aboutme }}
+    
+{% endblock %}
+
