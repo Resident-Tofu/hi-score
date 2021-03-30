@@ -1,0 +1,25 @@
+{% extends 'hi-score/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    Review Game
+{% endblock %}
+
+{% block body_block %}
+<h1>Review </h1>
+	<div>
+		<form id="review form" method="post" action="{% url 'hi-score:review_game' slug%}">
+			{% csrf_token %}
+			{% for hidden in form.hidden_fields %}
+				{{ hidden }}
+			{% endfor %}
+			{% for field in form.visible_fields %}
+				{{ field.errors }}
+				{{ field.help_text }}
+				{{ field }}
+				<br>
+			{% endfor %}
+			<input type="submit" name="submit" value="Leave Review" />
+		</form>
+	</div>
+{% endblock %}
