@@ -43,13 +43,14 @@ class Game(models.Model):
 class Review(models.Model):
     game = models.ForeignKey(Game, on_delete = models.CASCADE)
     #user = models.ForeignKey(UserProfile, on_delete=models.CASCADE) # Maybe User?
-    title = models.CharField(max_length = 32)
+    title = models.CharField(max_length = 32, unique = True)
     body = models.TextField()
     date = models.DateField(auto_now = True) # using over `auto_now_add` to update on user edit
     rating = models.PositiveSmallIntegerField()
     likes = models.PositiveIntegerField()
     dislikes = models.PositiveIntegerField()
-    ytlink = models.URLField(default = None, null = True, unique = True) # Validate using forms
+    ytlink = models.URLField(default = None, null = True) # Validate using forms
+    embed = models.CharField(max_length = 128, default = None, null = True)
     captions = models.BooleanField(default = False) # If true, use video captions as body of review
 
     def save(self, *args, **kwargs):

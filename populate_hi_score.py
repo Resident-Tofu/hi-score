@@ -142,8 +142,10 @@ def populate():
         r.likes = review.get("likes", 0)
         r.dislikes = review.get("dislikes", 0)
         r.ytlink = review.get("ytlink", "")
-        if r.ytlink != "" and review.get("captions") == True:
-            pass # Use YouTube API to get captions, use as review body
+        if r.ytlink:
+            r.embed = "https://www.youtube.com/embed/" + r.ytlink[r.ytlink.rfind("/"):]
+        if r.ytlink and review.get("captions") == True:
+                pass # Use YouTube API to get captions, use as review body
         else:
             r.body = review.get("body", "")
         r.save()
