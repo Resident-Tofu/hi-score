@@ -40,8 +40,11 @@
 	 	</div>
 	 	<div class="login">
 	 		{% if user.is_authenticated %}
-	 			<h3>You are logged in! {{ userprofile.datejoined }}</h3>
-	 			<h3>{{ user.datejoined }}</h3>
+	 			<h3>You are logged in!</h3>
+				<a href = "{% url 'hi-score:show_account' %}">
+					<h4>MyAccount</h4>
+				</a>
+				
 	 			<h4><u><a href="{% url 'hi-score:logout' %}">Logout</a></u></h4>
 	 		{% else %}
 	 			<h4><u><a href="{% url 'hi-score:user_login' %}">Login</a></u></h4>
