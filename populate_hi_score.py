@@ -85,7 +85,6 @@ def populate():
         {
             "game": "The Witness",
             "title": "Mindblowing",
-            "user"
             "rating": 4,
             "likes": 297,
             "dislikes": 53,
@@ -117,6 +116,7 @@ def populate():
             "rating": 3,
             "likes": 3,
             "dislikes": 3,
+            "body": "This should not show up.",
             "ytlink": "https://youtu.be/E5ePjOFnuwY",
             "captions": True,
         },
@@ -152,12 +152,10 @@ def populate():
             r.likes = review.get("likes", 0)
             r.dislikes = review.get("dislikes", 0)
             r.ytlink = review.get("ytlink", "")
+            r.captions = review.get("captions", False)
             if r.ytlink:
                 r.embed = "https://www.youtube.com/embed/" + r.ytlink[r.ytlink.rfind("/") + 1:]
-            if r.ytlink and review.get("captions") == True:
-                    pass # Use YouTube API to get captions, use as review body
-            else:
-                r.body = review.get("body", "")
+            r.body = "" if r.captions else review.get("body", "") # Otherwise, use AJAX to handle captions
             r.save()
 
 
