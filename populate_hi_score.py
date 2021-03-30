@@ -12,12 +12,12 @@ from datetime import date
 
 def populate():
     users = [
-    #     {
-    #         "username": "Rex",
-    #         "password": "okay123",
-    #         "aboutme": "I just like games",
-    #         "rating": 4,
-    #     }
+        # {
+        #     "username": "Rex",
+        #     "password": "okay123",
+        #     "aboutme": "I just like games",
+        #     "rating": 4,
+        # }
     ]
 
     genre_pages = [
@@ -82,35 +82,35 @@ def populate():
     ]
 
     reviews = [
-    #     {
-    #         "game": "The Witness",
-    #         "title": "Mindblowing",
-    #         "user"
-    #         "rating": 4,
-    #         "likes": 297,
-    #         "dislikes": 53,
-    #         "body": "This game changed how I played games forever.  Initially, I was sceptical, but I persisted and discovered hidden depth to this game.  It is a guided meditation that leads to a small inner awakening.  Can't recommend enough.",
-    #         "captions": False,
-    #     },
-    #     {
-    #         "game": "The Witness",
-    #         "title": "What",
-    #         "rating": 1,
-    #         "likes": 45,
-    #         "dislikes": 36,
-    #         "body": "No idea why I let people talk me into buying this humongous waste of time -- avoid",
-    #         "captions": False,
-    #     },
-    #     {
-    #         "game": "Doom Eternal",
-    #         "title": "RIP AND TEAR",
-    #         "rating": 5,
-    #         "likes": 666,
-    #         "dislikes": 9,
-    #         "body": "SHOOT BIG GUN MAKE DEMONS GO EXPLODEY THIS GAME IS THE GOAT",
-    #         "ytlink": "https://youtu.be/_bA3nM_v2eU",
-    #         "captions": False,
-    #     },
+        {
+            "game": "The Witness",
+            "title": "Mindblowing",
+            "user"
+            "rating": 4,
+            "likes": 297,
+            "dislikes": 53,
+            "body": "This game changed how I played games forever.  Initially, I was sceptical, but I persisted and discovered hidden depth to this game.  It is a guided meditation that leads to a small inner awakening.  Can't recommend enough.",
+            "captions": False,
+        },
+        {
+            "game": "The Witness",
+            "title": "What",
+            "rating": 1,
+            "likes": 45,
+            "dislikes": 36,
+            "body": "No idea why I let people talk me into buying this humongous waste of time -- avoid",
+            "captions": False,
+        },
+        {
+            "game": "Doom Eternal",
+            "title": "RIP AND TEAR",
+            "rating": 5,
+            "likes": 666,
+            "dislikes": 9,
+            "body": "SHOOT BIG GUN MAKE DEMONS GO EXPLODEY THIS GAME IS THE GOAT",
+            "ytlink": "https://youtu.be/_bA3nM_v2eU",
+            "captions": False,
+        },
     ]
 
     # Create users

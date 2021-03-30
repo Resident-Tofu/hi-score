@@ -17,6 +17,7 @@ urlpatterns = [
     path('genres/<slug:genre_name_slug>/', views.show_genre, name='show_genre'),
     path('enlist/', views.signup, name='signup'),
     path('login/', views.user_login, name='user_login'),
-    path('myaccount/', views.show_account, name='show_account'),
+    path('myaccount/', views.show_account, name='my_account'),
+    path('accounts/<slug:account_name_slug>/', views.show_account, name='show_account'),
     path('logout/', views.user_logout, name='logout'),
 ]

@@ -64,6 +64,14 @@ def review_game(request, game_name_slug):
 		review.user = request.user
 		review.likes = 0
 		review.dislikes = 0
+
+		if review.ytlink:
+			# print(f'\n\n\n\n\n\n\n\n\n{review.ytlink}\n\n\n\n\n\n\n\n\n')
+			# Youtube videos can be embedded by adding /embed before the watch code
+			pos = review.ytlink.rfind('=')
+			review.embed = f"https://www.youtube.com/embed/{review.ytlink[pos+1 :]}"
+			print(f'\n\n\n\n\n\n\n\n\n{review.embed}\n\n\n\n\n\n\n\n\n')
+			
 		review.save()
 		return redirect(reverse('hi-score:show_game', 
 				kwargs={'game_name_slug': game_name_slug}))
