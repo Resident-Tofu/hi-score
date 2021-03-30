@@ -7,10 +7,19 @@
 	 	<link rel="icon" type="image/ico" href="{% static 'images/favicon.ico' %}" />
 
 	 	<title>
-	 		Home
+	 		{% block title_block %}
+	 			Hi-Score
+	 		{% endblock %}
 	 	</title>
+
+	 	<style>
+		 {% block style_block %}
+		 {% endblock %}
+		 </style>
+
+		 <meta charset="UTF-8">
 	 </head>
- 
+
 	 <body>
 	 	<div class="header">
 	 		<h1>Hi-Score</h1>

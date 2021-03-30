@@ -1,14 +1,52 @@
 {% extends 'hi-score/base.html' %}
 
-{% block body_block %}
 
+{% block style_block %}
+    .review {
+        background-color: purple;
+        border: 2px solid gray;
+        color: black;
+        margin: 10px;
+    }
+
+    .reviewer {
+        width: 20%;
+        margin: 5px;
+        margin-right: 10px;
+        float: left;
+    }
+
+    .rtext {
+        clear: left;
+        right: 20%;
+    }
+{% endblock %}
+
+{% block body_block %}
 <div class="gameinfo">
 {% if name %}
     <h2>{{ name }}</h2>
     <h3>{{ desc }}</h3>
+
+    {% for review in reviews %}
+        <table>
+            <div class="review">
+                <div class="reviewer">
+                    <h3>Reviewer: Name</h3>
+                    <h5>Date: {{ review.date }}</h5>
+                </div>
+                <div class="rtext">
+                    <h2>{{ review.title }}</h2>
+                    {# source for this loop code: https://pythoncircle.com/post/685/for-loop-in-django-template/ #}
+                    <h2 id="stars{{ review.title }}">&#11088;</h2>
+                    <p>{{ review.body }}</p>
+                    <p>Likes: {{ review.likes }}, Dislikes: {{ review.dislikes }}</p>
+                </div>
+            </div>
+        </table>
+    {% endfor %}
 {% else %}
     <strong>Something went wrong!</strong>
 {% endif %}
 </div>
-
 {% endblock %}

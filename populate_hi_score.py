@@ -6,10 +6,20 @@ os.environ.setdefault(
 
 import django
 django.setup()
-from hi_score.models import Genre, Game, Review
-
+from hi_score.models import UserProfile, Genre, Game, Review
+from django.contrib.auth.models import User
+from datetime import date
 
 def populate():
+    users = [
+        # {
+        #     "username": "Rex",
+        #     "password": "okay123",
+        #     "aboutme": "I just like games",
+        #     "rating": 4,
+        # }
+    ]
+
     genre_pages = [
         { "name": "Action" },
         { "name": "Adventure" },
@@ -75,6 +85,7 @@ def populate():
         {
             "game": "The Witness",
             "title": "Mindblowing",
+            "user"
             "rating": 4,
             "likes": 297,
             "dislikes": 53,
@@ -102,6 +113,16 @@ def populate():
         },
     ]
 
+    # Create users
+    for user in users:
+        u, created = User.objects.get_or_create(username = user["username"])
+        if not created:
+            u.set_password(user["password"])
+        u.save()
+        up = UserProfile(user = u, aboutme = user["aboutme"], rating = user["rating"])
+        up.datejoined = date.today()
+        up.save()
+
     # Create the genre pages
     for genre in genre_pages:
         g = Genre.objects.get_or_create(name = genre["name"])[0]
@@ -116,7 +137,8 @@ def populate():
 
     # Create the reviews
     for review in reviews:
-        r = Review(title = review["title"], game = Game.objects.get(name = review["game"]), rating = review["rating"])
+        r = Review(title = review["title"], game = Game.objects.get(name = review["game"]))
+        r.rating = review.get("rating", 3) #review["rating"]
         r.likes = review.get("likes", 0)
         r.dislikes = review.get("dislikes", 0)
         r.ytlink = review.get("ytlink", "")
