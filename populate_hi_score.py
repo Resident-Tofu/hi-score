@@ -111,6 +111,15 @@ def populate():
             "ytlink": "https://youtu.be/_bA3nM_v2eU",
             "captions": False,
         },
+        {
+            "game": "Doom Eternal",
+            "title": "Video Review!",
+            "rating": 3,
+            "likes": 3,
+            "dislikes": 3,
+            "ytlink": "https://youtu.be/_bA3nM_v2eU",
+            "captions": True,
+        },
     ]
 
     # Create users

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% load staticfiles %} <!-- was load static -->
 
  <html>
 	 <head>
@@ -54,5 +54,7 @@
         {% endblock %}
         </div>
 
+        <script src="{% static "js/jquery-3.6.0.min.js" %}" crossorigin="anonymous"></script>
+        <script src="{% static "js/hi-score-ajax.js" %}" crossorigin="anonymous"></script>
 	 </body> 
 </html>
