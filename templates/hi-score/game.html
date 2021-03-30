@@ -38,7 +38,7 @@
                 <div class="rtext">
                     <h2>{{ review.title }}</h2>
                     {# source for this loop code: https://pythoncircle.com/post/685/for-loop-in-django-template/ #}
-                    <h2 id="stars{{ review.title }}">&#11088;</h2>
+                    <h2 class="stars" data-rat="{{ review.rating }}">&#11088;</h2>
                     <p>{{ review.body }}</p>
                     <p>Likes: {{ review.likes }}, Dislikes: {{ review.dislikes }}</p>
 
