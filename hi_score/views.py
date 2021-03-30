@@ -190,10 +190,9 @@ def user_logout(request):
 
 @login_required
 def show_account(request):
-	# user_profile = request.user.userprofile
-	
 	context_dict = {}
 	# context_dict['aboutme'] = user_profile.aboutme
+	context_dict['reviews'] = Review.objects.filter(user=request.user)
 	return render(request, 'hi-score/profile.html', context=context_dict)
 
 	# return HttpResponse("This is the myaccount page")
