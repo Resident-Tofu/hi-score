@@ -5,6 +5,17 @@
         
 <h2><p>Hello {{ user.get_username }}-- this is the front page</p></h2>
 
+{% if games %}
+<div id="top-games-list">
+<p>Hot Topics</p>
+	<ul>
+		{% for game in games %}
+			<li>{{ game.name }}</li>
+		{% endfor %}
+	</ul>
+{% endif %}
+</div>
+
 
 
 {% endblock %}

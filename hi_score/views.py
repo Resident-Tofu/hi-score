@@ -12,12 +12,11 @@ from hi_score.forms import UserForm, UserProfileForm
 from hi_score.forms import GenreForm, GameForm
 
 def index(request):
-	genre_list = Genre.objects.order_by("-name")[:10]
-	game_list = Game.objects.order_by("-name")[:5]
+	genre_list = Genre.objects.order_by("name")[:10]
+	game_list = Game.objects.order_by("name")[:5]
 	context_dict = {}
 	context_dict["genres"] = genre_list
 	context_dict["games"] = game_list
-	context_dict["user"] = request.user
 	response = render(request, "hi-score/home.html", context=context_dict)
 	return response
 
@@ -179,7 +178,7 @@ def user_login(request):
 			message = "Invalid login details!"
 	else:
 		message = None
-		
+
 	context_dict = {'message' : message}
 	return render(request, 'hi-score/login.html', context=context_dict)
 

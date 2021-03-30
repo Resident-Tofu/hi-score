@@ -24,13 +24,26 @@ body{
 	top: -100px;
 	left: 33%;
 	width: 33%;
-	font-size: 20px; 
+	font-size: 20px;
+	font- 
 }
+
+.top-games-list p{
+
+	float: left;
+	font-size: 100px;
+
+	
+}
+
+
+
 li {
   list-style-type: none;
   float: left;
-  text-align:center;
-   width: 33%;
+  text-align: none;
+  height: 30px;
+  width: 33%;
   color: #5900B3;
 }
 .search{
