@@ -3,23 +3,11 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
 
-# class User(models.Model):
-#     # Review User class
-#     user = models.OneToOneField(User, on_delete = models.CASCADE)
-#     username = models.CharField(max_length = 32)
-#     password = models.CharField(max_length = 32)
-#     picture = models.ImageField(upload_to = 'profile_images', blank = True)
-#     aboutme = models.TextField(blank = True)
-#     datejoined = models.DateField()
-#     rating = models.DecimalField(decimal_places = 2, max_digits = 3)
-
-#     def __str__(self):
-#         return self.user.username
-
-
 class UserProfile(models.Model):
     # Links UserProfile to an instance of User
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length = 32) # Isn't this stored in User?
+    password = models.CharField(max_length = 32) # Isn't this stored in User?
     aboutme = models.TextField(blank = True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     datejoined = models.DateField()
@@ -54,6 +42,7 @@ class Game(models.Model):
 
 class Review(models.Model):
     game = models.ForeignKey(Game, on_delete = models.CASCADE)
+    #user = models.ForeignKey(UserProfile, on_delete=models.CASCADE) # Maybe User?
     title = models.CharField(max_length = 32)
     body = models.TextField()
     date = models.DateField(auto_now = True) # using over `auto_now_add` to update on user edit
