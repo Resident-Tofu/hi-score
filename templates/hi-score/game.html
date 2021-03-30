@@ -29,6 +29,8 @@
     <h2>{{ name }}</h2>
     <h3>{{ desc }}</h3>
 
+    <a href={% url 'hi-score:review_game' slug %}>Leave a Review!</a>
+
     {% for review in reviews %}
         <table>
             <div class="review">

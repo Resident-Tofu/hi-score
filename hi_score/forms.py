@@ -24,9 +24,8 @@ class GameForm(forms.ModelForm):
 		fields = ('name', 'desc')
 
 class ReviewForm(forms.ModelForm):
-	title = forms.CharField(max_length = 32)
-	body = forms.CharField()
-	rating = forms.IntegerField()
+	title = forms.CharField(help_text="Review Title:")
+	rating = forms.IntegerField(help_text = "Rating: ")
 
 	class Meta:
 		model = Review
