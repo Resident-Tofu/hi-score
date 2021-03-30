@@ -7,7 +7,6 @@
 
 {% block body_block %}
     {% if user.userprofile.picture %} 
-        Picture exists!
         <img src="{{ user.userprofile.picture.url }}" alt="Profile Pic" style="width:80px;height:80px">
     {% else %}
         <img src="{% static 'images/profile.png' %}" alt="Hi-Score" style="width:80px;height:80px">
@@ -15,7 +14,17 @@
 
     <h2>{{ user.get_username}}</h2>
 
-    {{ user.userprofile.aboutme }}
+    About Me: {{ user.userprofile.aboutme }} <br>
+    Date Joined: {{ user.userprofile.datejoined }}
+
+    
+
+    {% if reviews %}
+        {% for review in reviews %}
+            {{review.name}}
+            {{review.rating}}
+        {% endfor %}
+    {% endif %}
     
 {% endblock %}
 

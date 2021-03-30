@@ -23,6 +23,14 @@ class GameForm(forms.ModelForm):
 		model = Game
 		fields = ('name', 'desc')
 
+class ReviewForm(forms.ModelForm):
+	title = forms.CharField(help_text="Review Title:")
+	rating = forms.IntegerField(help_text = "Rating: ")
+
+	class Meta:
+		model = Review
+		fields = ('title', 'body', 'rating', )
+
 class UserForm(forms.ModelForm):
 	username = forms.CharField(max_length = 64)
 	password = forms.CharField(widget=forms.PasswordInput())
@@ -35,3 +43,4 @@ class UserProfileForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
 		fields = ('aboutme', 'picture', )
+

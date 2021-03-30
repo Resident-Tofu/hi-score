@@ -9,7 +9,7 @@ from hi_score.models import Genre
 from hi_score.models import Game
 from hi_score.models import Review
 from hi_score.forms import UserForm, UserProfileForm
-from hi_score.forms import GenreForm, GameForm
+from hi_score.forms import GenreForm, GameForm, ReviewForm
 
 def index(request):
 	genre_list = Genre.objects.order_by("name")[:10]
@@ -45,12 +45,34 @@ def show_game(request, game_name_slug):
 	context_dict["desc"] = game.desc
 	review_list = Review.objects.filter(game = game)
 	context_dict["reviews"] = review_list
+	context_dict["slug"] = game_name_slug
 
 	return render(request, 'hi-score/game.html', context=context_dict)
 
-# Login Required
+@login_required
 def review_game(request, game_name_slug):
-	return render(request, 'hi-score/review_game.html')
+	game = Game.objects.get(slug = game_name_slug)
+	form = ReviewForm()
+
+	# A HTTP POST?
+	if request.method == 'POST':
+		form = ReviewForm(request.POST)
+
+	if form.is_valid():
+		review = form.save(commit=False)
+		review.game = game
+		review.user = request.user
+		review.likes = 0
+		review.dislikes = 0
+		review.save()
+		return redirect(reverse('hi-score:show_game', 
+				kwargs={'game_name_slug': game_name_slug}))
+
+	else:
+		# Form had errors, print to terminal
+		print(form.errors)
+
+	return render(request, 'hi-score/review_game.html', {'form': form, 'name':game.name, 'slug': game_name_slug})
 
 @login_required
 def add_game(request):
@@ -69,6 +91,7 @@ def add_game(request):
 		print(form.errors)
 
 	return render(request, 'hi-score/add_game.html', {'form': form})
+
 
 def show_genres(request):
 	genre_list = Genre.objects.order_by('-name')
@@ -190,12 +213,9 @@ def user_logout(request):
 
 @login_required
 def show_account(request):
-	# user_profile = request.user.userprofile
-	
 	context_dict = {}
 	# context_dict['aboutme'] = user_profile.aboutme
+	context_dict['reviews'] = Review.objects.filter(user=request.user)
 	return render(request, 'hi-score/profile.html', context=context_dict)
 
 	# return HttpResponse("This is the myaccount page")
-
-
