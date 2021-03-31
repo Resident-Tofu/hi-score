@@ -1,11 +1,12 @@
 {% extends 'hi-score/base.html' %}
+{% load static %}
 
 
 {% block style_block %}
     .review {
-        background-color: purple;
+        background-color: #5900B3;
         border: 2px solid gray;
-        color: black;
+        color: white;
         margin: 10px;
     }
 
@@ -17,9 +18,10 @@
     }
 
     .rtext {
-        clear: left;
+        clear: none;
         right: 20%;
     }
+
 {% endblock %}
 
 {% block body_block %}
@@ -28,12 +30,22 @@
     <h2>{{ name }}</h2>
     <h3>{{ desc }}</h3>
 
+    <a href={% url 'hi-score:review_game' slug %}>Leave a Review!</a>
+
     {% for review in reviews %}
         <table>
             <div class="review">
                 <div class="reviewer">
-                    <h3>Reviewer: Name</h3>
-                    <h5>Date: {{ review.date }}</h5>
+
+                    {% if review.user.userprofile.picture %}
+                        <img src = "{{ review.user.userprofile.picture.url }}" alt="Profile Pic" style="width:60px;height:60px">
+                    {% else %}
+                        <img src = "{% static 'hi-score/profile.png' %}" alt="Profile Pic" style="width:60px;height:60px">
+                    {% endif %}
+                    
+                    <h3>{{ review.user.get_username}}</h3>
+
+                    </h5>{{ review.date }}</h5>
                 </div>
                 <div class="rtext">
                     <h2>{{ review.title }}</h2>

@@ -17,6 +17,12 @@ body{
 	position: relative;
 	top: -70px;
 }
+.sidebar{
+	text-align: left;
+	position: relative;
+	top: -150px;
+	right: -120px;
+}
 .homeBar{
 	text-align: center;
 	color: #5900B3;
@@ -24,13 +30,41 @@ body{
 	top: -100px;
 	left: 33%;
 	width: 33%;
-	font-size: 20px; 
+	font-size: 20px;
+	font- 
 }
+.contacts{
+	text-align: center;
+	position: relative;
+	top: -100px;
+	left: 33%;
+	width: 33%;
+	font-size: 20px;
+}
+
+.top-games-list p{
+
+	float: left;
+	font-size: 100px;
+
+	
+}
+.welcome{
+	text-align: center;
+	position: relative;
+	top: -140px;
+	left: 33%;
+	width: 33%;
+}
+
+
+
 li {
   list-style-type: none;
   float: left;
-  text-align:center;
-   width: 33%;
+  text-align: none;
+  height: 30px;
+  width: 33%;
   color: #5900B3;
 }
 .search{
