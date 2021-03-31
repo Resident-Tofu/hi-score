@@ -127,7 +127,7 @@ def populate():
             "likes": 291,
             "dislikes": 5,
             "body": "This should not show up.",
-            "ytlink": "https://youtu.be/qmHPc_TL6bE",
+            "ytlink": "https://youtu.be/njLsiNmQ5tI",
             "captions": True,
         },
         {
@@ -137,7 +137,7 @@ def populate():
             "likes": 340,
             "dislikes": 75,
             "body": "This should not show up.",
-            "ytlink": "https://youtu.be/QYrog8FaMnE",
+            "ytlink": "https://youtu.be/TwFmJQPIZcA",
             "captions": True,
         },
         {
@@ -147,7 +147,7 @@ def populate():
             "likes": 120,
             "dislikes": 17,
             "body": "This should not show up.",
-            "ytlink": "https://youtu.be/OEu3rxaUshY",
+            "ytlink": "https://youtu.be/AW2EEoW_Tw4",
             "captions": True,
         },
         {
@@ -156,9 +156,8 @@ def populate():
             "rating": 2,
             "likes": 120,
             "dislikes": 259,
-            "body": "This should not show up.",
-            "ytlink": "https://youtu.be/g1gpyeh6kOc",
-            "captions": True,
+            "body": "Theres a reason no-one plays this game anymore and the awful graphics are the main factor :(  ",
+            "captions": False,
         },
         {
             "game": "Uncharted",
@@ -167,7 +166,7 @@ def populate():
             "likes": 560,
             "dislikes": 25,
             "body": "This should not show up.",
-            "ytlink": "https://youtu.be/QNGQ6prs5CY",
+            "ytlink": "https://youtu.be/ntCFRWahdpU",
             "captions": True,
         },
         {
@@ -177,7 +176,7 @@ def populate():
             "likes": 56,
             "dislikes": 2,
             "body": "This should not show up.",
-            "ytlink": "https://youtu.be/Caw9WTVKsms",
+            "ytlink": "https://youtu.be/5Er0UyHPLp8",
             "captions": True,
         },
         {
@@ -187,7 +186,7 @@ def populate():
             "likes": 356,
             "dislikes": 27,
             "body": "This should not show up.",
-            "ytlink": "https://youtu.be/vPkM-t8eawc",
+            "ytlink": "https://youtu.be/zIpQ50AV8Rk",
             "captions": True,
         },
         {
