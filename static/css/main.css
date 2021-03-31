@@ -18,9 +18,10 @@ body{
 	top: -70px;
 }
 .sidebar{
-	text-align: right;
+	text-align: left;
 	position: relative;
-	top: -90px;
+	top: -150px;
+	right: -120px;
 }
 .homeBar{
 	text-align: center;
@@ -39,6 +40,13 @@ body{
 	font-size: 100px;
 
 	
+}
+.welcome{
+	text-align: center;
+	position: relative;
+	top: -140px;
+	left: 33%;
+	width: 33%;
 }
 
 

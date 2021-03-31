@@ -2,14 +2,17 @@
 
 {% block body_block %}
 
+<div class="welcome">
+<h2><p>Hello {{ user.get_username }}-- this is the front page</p></h2>
+</div>
+
 <div class="sidebar">
-	<h3><ul>Top Genres</ul></h3>
+	<h2><u>Top Genres</u></h2>
 	{% for genre in genres %}
-		<p><a href="{% url 'hi-score:show_genre' genre.slug %}">{{genre.name }}</a></p>
+		<a href="{% url 'hi-score:show_genre' genre.slug %}">{{genre.name }}</a><br/>
 	{% endfor %}
 	
 </div>
 
-<h2><p>Hello {{ user.get_username }}-- this is the front page</p></h2>
 
 {% endblock %}
