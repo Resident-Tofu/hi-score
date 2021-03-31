@@ -12,12 +12,18 @@ from datetime import date
 
 def populate():
     users = [
-        # {
-        #     "username": "Rex",
-        #     "password": "okay123",
-        #     "aboutme": "I just like games",
-        #     "rating": 4,
-        # }
+        {
+            "username": "Rex",
+            "password": "okay123",
+            "aboutme": "I just like games",
+            "rating": 4,
+        },
+        {
+            "username": "Peach73",
+            "password": "sprinkles",
+            "aboutme": "",
+            "rating": 3,
+        },
     ]
 
     genre_pages = [
@@ -85,6 +91,7 @@ def populate():
         {
             "game": "The Witness",
             "title": "Mindblowing",
+            "user": "Rex",
             "rating": 4,
             "likes": 297,
             "dislikes": 53,
@@ -94,6 +101,7 @@ def populate():
         {
             "game": "The Witness",
             "title": "What",
+            "user": "Peach73",
             "rating": 1,
             "likes": 45,
             "dislikes": 36,
@@ -103,6 +111,7 @@ def populate():
         {
             "game": "Doom Eternal",
             "title": "RIP AND TEAR",
+            "user": "Rex",
             "rating": 5,
             "likes": 666,
             "dislikes": 9,
@@ -113,6 +122,7 @@ def populate():
         {
             "game": "Doom Eternal",
             "title": "Video Review!",
+            "user": "Peach73",
             "rating": 3,
             "likes": 3,
             "dislikes": 3,
@@ -123,6 +133,7 @@ def populate():
         {
             "game": "Halo",
             "title": "Its a 10!!",
+            "user": "Rex",
             "rating": 5,
             "likes": 291,
             "dislikes": 5,
@@ -133,6 +144,7 @@ def populate():
         {
             "game": "Tekken",
             "title": "Tekken 7 is a love letter to this long-running franchise",
+            "user": "Peach73",
             "rating": 4,
             "likes": 340,
             "dislikes": 75,
@@ -143,6 +155,7 @@ def populate():
         {
             "game": "Crash Bandicoot",
             "title": "Games like this that keep me coming back to steam! ",
+            "user": "Peach73",
             "rating": 4,
             "likes": 120,
             "dislikes": 17,
@@ -153,6 +166,7 @@ def populate():
         {
             "game": "Rayman",
             "title": "I hate this game with all my soul ",
+            "user": "Rex",
             "rating": 2,
             "likes": 120,
             "dislikes": 259,
@@ -162,6 +176,7 @@ def populate():
         {
             "game": "Uncharted",
             "title": "My favourite game/series of ALL TIME! 50 years from now I will still play Uncharted ;)",
+            "user": "Peach73",
             "rating": 5,
             "likes": 560,
             "dislikes": 25,
@@ -172,6 +187,7 @@ def populate():
         {
             "game": "Warcraft",
             "title": "strange that dungeons, raids or PvP was not really touched on at all...",
+            "user": "Peach73",
             "rating": 4,
             "likes": 56,
             "dislikes": 2,
@@ -182,6 +198,7 @@ def populate():
         {
             "game": "Wipeout",
             "title": "One Of The Best Racing Games Released In Years",
+            "user": "Rex",
             "rating": 5,
             "likes": 356,
             "dislikes": 27,
@@ -192,6 +209,7 @@ def populate():
         {
             "game": "Wipeout",
             "title": "I love speeeeed",
+            "user": "Peach73",
             "rating": 4,
             "likes": 35,
             "dislikes": 7,
@@ -206,7 +224,7 @@ def populate():
     # Create users
     for user in users:
         u, created = User.objects.get_or_create(username = user["username"])
-        if not created:
+        if created:
             u.set_password(user["password"])
         u.save()
         up = UserProfile(user = u, aboutme = user["aboutme"], rating = user["rating"])
@@ -227,8 +245,12 @@ def populate():
 
     # Create the reviews
     for review in reviews:
-        r, created = Review.objects.get_or_create(title = review["title"], game = Game.objects.get(name = review["game"]))
+        u = User.objects.get(username = review["user"])
+        up = UserProfile.objects.get(user = u)
+        g = Game.objects.get(name = review["game"])
+        r, created = Review.objects.get_or_create(user = up, game = g)
         if created:
+            r.title = review["title"]
             r.rating = review.get("rating", 3) #review["rating"]
             r.likes = review.get("likes", 0)
             r.dislikes = review.get("dislikes", 0)
