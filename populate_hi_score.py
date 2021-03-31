@@ -82,35 +82,44 @@ def populate():
     ]
 
     reviews = [
-        # {
-        #     "game": "The Witness",
-        #     "title": "Mindblowing",
-        #     "user"
-        #     "rating": 4,
-        #     "likes": 297,
-        #     "dislikes": 53,
-        #     "body": "This game changed how I played games forever.  Initially, I was sceptical, but I persisted and discovered hidden depth to this game.  It is a guided meditation that leads to a small inner awakening.  Can't recommend enough.",
-        #     "captions": False,
-        # },
-        # {
-        #     "game": "The Witness",
-        #     "title": "What",
-        #     "rating": 1,
-        #     "likes": 45,
-        #     "dislikes": 36,
-        #     "body": "No idea why I let people talk me into buying this humongous waste of time -- avoid",
-        #     "captions": False,
-        # },
-        # {
-        #     "game": "Doom Eternal",
-        #     "title": "RIP AND TEAR",
-        #     "rating": 5,
-        #     "likes": 666,
-        #     "dislikes": 9,
-        #     "body": "SHOOT BIG GUN MAKE DEMONS GO EXPLODEY THIS GAME IS THE GOAT",
-        #     "ytlink": "https://youtu.be/_bA3nM_v2eU",
-        #     "captions": False,
-        # },
+        {
+            "game": "The Witness",
+            "title": "Mindblowing",
+            "rating": 4,
+            "likes": 297,
+            "dislikes": 53,
+            "body": "This game changed how I played games forever.  Initially, I was sceptical, but I persisted and discovered hidden depth to this game.  It is a guided meditation that leads to a small inner awakening.  Can't recommend enough.",
+            "captions": False,
+        },
+        {
+            "game": "The Witness",
+            "title": "What",
+            "rating": 1,
+            "likes": 45,
+            "dislikes": 36,
+            "body": "No idea why I let people talk me into buying this humongous waste of time -- avoid",
+            "captions": False,
+        },
+        {
+            "game": "Doom Eternal",
+            "title": "RIP AND TEAR",
+            "rating": 5,
+            "likes": 666,
+            "dislikes": 9,
+            "body": "SHOOT BIG GUN MAKE DEMONS GO EXPLODEY THIS GAME IS THE GOAT",
+            "ytlink": "https://youtu.be/_bA3nM_v2eU",
+            "captions": False,
+        },
+        {
+            "game": "Doom Eternal",
+            "title": "Video Review!",
+            "rating": 3,
+            "likes": 3,
+            "dislikes": 3,
+            "body": "This should not show up.",
+            "ytlink": "https://youtu.be/vqduGTChT5U",
+            "captions": True,
+        },
     ]
 
     # Create users
@@ -137,18 +146,17 @@ def populate():
 
     # Create the reviews
     for review in reviews:
-        r = Review(title = review["title"], game = Game.objects.get(name = review["game"]))
-        r.rating = review.get("rating", 3) #review["rating"]
-        r.likes = review.get("likes", 0)
-        r.dislikes = review.get("dislikes", 0)
-        r.ytlink = review.get("ytlink", "")
-        if r.ytlink:
-            r.embed = "https://www.youtube.com/embed/" + r.ytlink[r.ytlink.rfind("/"):]
-        if r.ytlink and review.get("captions") == True:
-                pass # Use YouTube API to get captions, use as review body
-        else:
-            r.body = review.get("body", "")
-        r.save()
+        r, created = Review.objects.get_or_create(title = review["title"], game = Game.objects.get(name = review["game"]))
+        if created:
+            r.rating = review.get("rating", 3) #review["rating"]
+            r.likes = review.get("likes", 0)
+            r.dislikes = review.get("dislikes", 0)
+            r.ytlink = review.get("ytlink", "")
+            r.captions = review.get("captions", False)
+            if r.ytlink:
+                r.embed = "https://www.youtube.com/embed/" + r.ytlink[r.ytlink.rfind("/") + 1:]
+            r.body = "" if r.captions else review.get("body", "") # Otherwise, use AJAX to handle captions
+            r.save()
 
 
 # Execution

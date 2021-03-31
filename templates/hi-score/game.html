@@ -49,12 +49,18 @@
                 </div>
                 <div class="rtext">
                     <h2>{{ review.title }}</h2>
-                    <h2 id="stars{{ review.rating }}">&#11088; {{ review.rating }} </h2>
-                    <p>{{ review.body }}</p>
-                    <p>{{ review.likes }}&#11014;     {{ review.dislikes }}&#11015:</p>
+                    <h2 class="stars" data-rat="{{ review.rating }}">&#11088;&#11088;&#11088;</h2>
 
-                    {% if review.embed %}
-                        <iframe width="500" height="281" src={{ review.embed }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {% if review.captions %}
+                        <p class="cap" data-emb="{{ review.embed }}"></p>
+                    {% else %}
+                        <p>{{ review.body }}</p>
+                    {% endif %}
+
+                    <p>Likes: {{ review.likes }}, Dislikes: {{ review.dislikes }}</p>
+
+                    {% if review.ytlink %}
+                        <iframe width="560" height="315" src={{ review.embed }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     {% endif %}
                 </div>
             </div>
@@ -64,4 +70,5 @@
     <strong>Something went wrong!</strong>
 {% endif %}
 </div>
+
 {% endblock %}
