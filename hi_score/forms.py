@@ -25,8 +25,8 @@ class GameForm(forms.ModelForm):
 
 class ReviewForm(forms.ModelForm):
 	title = forms.CharField(help_text="Review Title:")
-	rating = forms.IntegerField(help_text = "Rating: ")
-	ytlink = forms.URLField(help_text = "Youtube Link")
+	rating = forms.IntegerField(help_text = "Rating:")
+	ytlink = forms.URLField(help_text = "Youtube Link:", required=False)
 
 	class Meta:
 		model = Review
