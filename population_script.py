@@ -224,10 +224,22 @@ def populate():
         if created:
             u.set_password(user["password"])
         u.save()
-        up = UserProfile(user = u, aboutme = user["aboutme"], rating = user["rating"])
+        up = UserProfile()
+        up.user = u
+        up.aboutme = user["aboutme"]
+        up.rating = user["rating"]
         up.datejoined = date.today()
         up.save()
-
+    # u, created = User.objects.get_or_create(username = "Rex")
+    # if created:
+    #     u.set_password(123)
+    # u.save()
+    # up = UserProfile()
+    # up.user = u
+    # up.aboutme = "I just wanna play some games"
+    # up.rating = 2.0
+    # up.datejoined = date.today()
+    # up.picture = get_profile_pic("amogus.jpg")
     # Create the genre pages
     for genre in genre_pages:
         g = Genre.objects.get_or_create(name = genre["name"])[0]
@@ -245,7 +257,7 @@ def populate():
         u = User.objects.get(username = review["user"])
         up = UserProfile.objects.get(user = u)
         g = Game.objects.get(name = review["game"])
-        r, created = Review.objects.get_or_create(user = up, game = g)
+        r, created = Review.objects.get_or_create(user = u, game = g)
         if created:
             r.title = review["title"]
             r.rating = review.get("rating", 3) #review["rating"]
@@ -258,6 +270,8 @@ def populate():
             r.body = "" if r.captions else review.get("body", "") # Otherwise, use AJAX to handle captions
             r.save()
 
+def get_profile_pic(name):
+    return f'{os.getcwd()}/media/profile_images/{name}'
 
 # Execution
 if __name__ == "__main__":

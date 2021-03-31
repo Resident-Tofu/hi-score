@@ -61,7 +61,7 @@ def review_game(request, game_name_slug):
 	if form.is_valid():
 		review = form.save(commit=False)
 		review.game = game
-		review.user = request.user.userprofile
+		review.user = request.user
 		review.likes = 0
 		review.dislikes = 0
 
