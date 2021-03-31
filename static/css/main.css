@@ -33,6 +33,14 @@ body{
 	font-size: 20px;
 	font- 
 }
+.contacts{
+	text-align: center;
+	position: relative;
+	top: -100px;
+	left: 33%;
+	width: 33%;
+	font-size: 20px;
+}
 
 .top-games-list p{
 
