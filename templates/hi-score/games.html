@@ -1,8 +1,20 @@
 {% extends 'hi-score/base.html' %}
 
 {% block body_block %}
+<div class="welcome">
+    <h1>Our Games!</h1>
+</div>
+{% if user.is_authenticated %}
+<div class="welcome">
+    <a href = "{% url 'hi-score:add_game' %}">Add a Game!</a>
+</div>
+{% else %}
+<div class="welcome">
+    Sign in to add a game!
+</div>
+{% endif %}
 
-<div class="gamelist">
+<div class="glist">
 {% if games %}
     <ul>
     {% for game in games %}
@@ -13,12 +25,6 @@
     </ul>
 {% else %}
     <strong>There are no games yet.  Add the first!</strong>
-{% endif %}
-
-{% if user.is_authenticated %}
-	<a href = "{% url 'hi-score:add_game' %}">Add a Game!</a>
-{% else %}
-	Sign in to add a game!
 {% endif %}
 </div>
 
