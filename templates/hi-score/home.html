@@ -1,18 +1,15 @@
 {% extends 'hi-score/base.html' %}
 
-
 {% block body_block %}
-        
-<h2><p>Hello {{ user.get_username }}-- this is the front page</p></h2>
 
 <div class="sidebar">
 	<h3><ul>Top Genres</ul></h3>
 	{% for genre in genres %}
-		<li>
-			<a href="{% url 'hi-score:show_genre' genre.slug %}">{{genre.name }}</a>
-		</li>
+		<p><a href="{% url 'hi-score:show_genre' genre.slug %}">{{genre.name }}</a></p>
 	{% endfor %}
 	
 </div>
+
+<h2><p>Hello {{ user.get_username }}-- this is the front page</p></h2>
 
 {% endblock %}
