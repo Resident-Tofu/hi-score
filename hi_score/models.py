@@ -11,6 +11,9 @@ class UserProfile(models.Model):
     datejoined = models.DateField()
     rating = models.DecimalField(decimal_places = 2, max_digits = 3)
 
+    def __str__(self):
+        return self.user.username
+
 class Genre(models.Model):
     name = models.CharField(max_length = 32, unique = True)
     slug = models.SlugField(unique = True)
@@ -37,7 +40,7 @@ class Game(models.Model):
 
 class Review(models.Model):
     game = models.ForeignKey(Game, on_delete = models.CASCADE)
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     title = models.CharField(max_length = 32, unique = True)
     body = models.TextField()
     date = models.DateField(auto_now = True) # using over `auto_now_add` to update on user edit

@@ -37,15 +37,15 @@
             <div class="review">
                 <div class="reviewer">
 
+                    <h3>{{ review.user.user.get_username}}</h3>
+
                     {% if review.user.userprofile.picture %}
                         <img src = "{{ review.user.userprofile.picture.url }}" alt="Profile Pic" style="width:60px;height:60px">
                     {% else %}
                         <img src = "{% static 'hi-score/profile.png' %}" alt="Profile Pic" style="width:60px;height:60px">
                     {% endif %}
-                    
-                    <h3>{{ review.user.get_username}}</h3>
 
-                    </h5>{{ review.date }}</h5>
+                    <h5>{{ review.date }}</h5>
                 </div>
                 <div class="rtext">
                     <h2>{{ review.title }}</h2>
