@@ -36,7 +36,7 @@
 	 		<input type="text" placeholder="Search..." name="search" style="width:200px;height:30px">
 	 	</div>
 	 	<div class="footer">
-	 		<a href="#Contact-Us" style="color: #5900B3">Contact Us</a>
+	 		<a href="{% url 'hi-score:contact_us' %}" style="color: #5900B3">Contact Us</a>
 	 	</div>
 	 	<div class="login">
 	 		{% if user.is_authenticated %}
