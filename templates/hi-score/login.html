@@ -7,7 +7,8 @@
 
 
 {% block body_block %}
-	<h1>Login to Hi-Score</h1>
+	<div class="welcome">
+		<h1>Login to Hi-Score</h1>
 	{% if message %}
 		<h4>{{ message }}</h4>
 	{% endif %}
@@ -19,5 +20,12 @@
 		<br />
 		<input type="submit" value="submit" />
 	</form>
+	<br/>
+	<p>Login to gain multiple exclusive benefits such as:</p>
+	<ul>- Add New Genres</ul>
+	<ul>- Add New Games</ul>
+	<ul>- Rate Games</ul>
+	<p>And much more .....</p>
+	</div>
 
 {% endblock %}

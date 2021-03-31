@@ -27,11 +27,11 @@
 {% block body_block %}
 <div class="gameinfo">
 {% if name %}
-    <h2>{{ name }}</h2>
-    <h3>{{ desc }}</h3>
-
-    <a href={% url 'hi-score:review_game' slug %}>Leave a Review!</a>
-
+    <div class="welcome">
+        <h2>{{ name }}</h2>
+        <h3>{{ desc }}</h3>
+        <a href={% url 'hi-score:review_game' slug %}>Leave a Review!</a>
+    </div>
     {% for review in reviews %}
         <table>
             <div class="review">

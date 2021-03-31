@@ -49,12 +49,20 @@ body{
 
 	
 }
+
 .welcome{
 	text-align: center;
 	position: relative;
 	top: -140px;
 	left: 33%;
 	width: 33%;
+}
+
+.glist{
+	text-align: center;
+	position: relative;
+	top: -70px;
+
 }
 
 

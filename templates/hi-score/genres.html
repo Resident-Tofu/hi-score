@@ -1,8 +1,21 @@
 {% extends 'hi-score/base.html' %}
 
 {% block body_block %}
+<div class="welcome">
+    <h1>Our Genres!</h1>
+</div>
 
-<div class="genrelist">
+{% if user.is_authenticated %}
+<div class="welcome">
+    <a href = "{% url 'hi-score:add_genre' %}">Add a Genre!</a>
+</div>
+{% else %}
+<div class="welcome">
+    Sign in to add a genre!
+</div>
+{% endif %}
+
+<div class="glist">
 {% if genres %}
     <ul>
     {% for genre in genres %}
@@ -13,12 +26,6 @@
     </ul>
 {% else %}
     <strong>There are no genres yet.  Add the first!</strong>
-{% endif %}
-
-{% if user.is_authenticated %}
-	<a href = "{% url 'hi-score:add_genre' %}">Add a Genre!</a>
-{% else %}
-	Sign in to add a genre!
 {% endif %}
 </div>
 
