@@ -34,9 +34,19 @@ def add_review(user, game):
 class ReviewMethodTests(TestCase):
 
     def test_slug_line_creation(self):
-        pass
+        """
+        Checks that appropriate slugs for urls are created.
+        """
+        genre = add_genre("Role Playing Game")
+        game = add_game("X_Power Chronicles", (genre,))
+
+        self.assertEqual(genre.slug, "role-playing-game")
+        self.assertEqual(game.slug, "x_power-chronicles")
 
     def test_ensure_review_rating_between_one_and_five(self):
+        """
+        Ensures the rating for a review is between 1 and 5.
+        """
         user1 = add_user("user1")
         user2 = add_user("user2")
         user3 = add_user("user3")
