@@ -1,4 +1,15 @@
 $(document).ready(function() {
+
+    // If like button clicked, increment likes for review and hide button
+    $('#like_btn').click(function(){
+        var reviewid;
+        reviewid = $(this).attr("data-reviewid");
+         $.get('/hi-score/like_review/', {review_id: reviewid}, 
+         function(data){
+                   $('#like_count').html(data);
+                   $('#likes').hide();
+               });
+    });
     
     // Display 1 to 5 stars according to the review's rating
     $(".stars").each(function() {
@@ -32,5 +43,5 @@ $(document).ready(function() {
         });
 
     });
-    
 });
+
