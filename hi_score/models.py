@@ -41,7 +41,7 @@ class Game(models.Model):
 class Review(models.Model):
     game = models.ForeignKey(Game, on_delete = models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    title = models.CharField(max_length = 32, unique = True)
+    title = models.CharField(max_length = 32)
     body = models.TextField()
     date = models.DateField(auto_now = True) # using over `auto_now_add` to update on user edit
     rating = models.PositiveSmallIntegerField(default = 3)

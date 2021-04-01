@@ -216,6 +216,16 @@ def populate():
             "body": "I think the think I loved the most about WipEout was the semi-realistic presentation of it all. The way you've got all these teams, with their own distinct logos on their ships, ads plastered all over the tracks and on billboards surrounding them...the artwork of The Designers Republic really brought this world to life ",
             "captions": False,
         },
+        {
+            "game": "Wipeout",
+            "title": "Different review",
+            "user": "Peach73",
+            "rating": 4,
+            "likes": 35,
+            "dislikes": 7,
+            "body": "Should not see this since only one review per user on a game",
+            "captions": False,
+        },
     ]
 
     # Create users
