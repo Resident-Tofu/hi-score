@@ -44,7 +44,11 @@
 	 		{% if user.is_authenticated %}
 	 			<h3>You are logged in!</h3>
 				<a href = "{% url 'hi-score:my_account' %}">
+				{% if user.userprofile.picture %}
 					<img src = "{{ user.userprofile.picture.url }}" alt="Profile Picture" style="width:50px;height:50px">
+				{% else %}
+					<img src = "{% static 'images/profile.png' %}" alt="My Page" style="width:50px;height:50px">
+				{% endif %}
 				</a>
 				
 	 			<h4><u><a href="{% url 'hi-score:logout' %}">Logout</a></u></h4>

@@ -61,7 +61,7 @@ def review_game(request, game_name_slug):
 	if form.is_valid():
 		review = form.save(commit=False)
 		review.game = game
-		review.user = request.user.userprofile
+		review.user = request.user
 		review.likes = 0
 		review.dislikes = 0
 
@@ -167,7 +167,6 @@ def signup(request):
 
 			# If user uploaded a picture, add it, then save profile to db
 			if 'picture' in request.FILES:
-				print("Picture provided!!!!!!!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 				profile.picture = request.FILES['picture']
 
 			profile.save()
