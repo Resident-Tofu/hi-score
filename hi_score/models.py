@@ -8,7 +8,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userprofile")
     aboutme = models.TextField(blank = True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
-    datejoined = models.DateField()
+    datejoined = models.DateField(auto_now_add = True)
     rating = models.DecimalField(decimal_places = 2, max_digits = 3)
 
     def __str__(self):
@@ -40,8 +40,8 @@ class Game(models.Model):
 
 class Review(models.Model):
     game = models.ForeignKey(Game, on_delete = models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length = 32, unique = True)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    title = models.CharField(max_length = 32)
     body = models.TextField()
     date = models.DateField(auto_now = True) # using over `auto_now_add` to update on user edit
     rating = models.PositiveSmallIntegerField(default = 3)
