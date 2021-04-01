@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
 from hi_score.models import Genre
 from hi_score.models import Game
 from hi_score.models import Review
@@ -224,3 +225,18 @@ def show_account(request):
 	return render(request, 'hi-score/profile.html', context=context_dict)
 
 	# return HttpResponse("This is the myaccount page")
+
+
+@login_required
+def like_review(request):
+    review_id = None
+    if request.method == 'GET':
+        review_id = request.GET['review_id']
+    if review_id:
+        review = Review.objects.get(id=int(review_id))
+        if review:
+            review.likes += 1
+            review.save()
+    return HttpResponse(review.likes)
+
+
