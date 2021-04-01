@@ -28,6 +28,12 @@ class ReviewForm(forms.ModelForm):
 	rating = forms.IntegerField(help_text = "Rating:")
 	ytlink = forms.URLField(help_text = "Youtube Link:", required=False)
 
+	def clean_rating(self):
+		rating = self.cleaned_data['rating']
+		if rating < 0 or rating > 5:
+			raise forms.ValidationError("Rating must be between 0 and 5")
+		return rating
+
 	class Meta:
 		model = Review
 		fields = ('title', 'body', 'rating', 'ytlink' )
@@ -38,7 +44,7 @@ class UserForm(forms.ModelForm):
 
 	class Meta:
 		model = User
-		fields = ('username', 'password', )
+		fields = ('username', 'password')
 
 class UserProfileForm(forms.ModelForm):
 	class Meta:
