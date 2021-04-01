@@ -8,7 +8,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userprofile")
     aboutme = models.TextField(blank = True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
-    datejoined = models.DateField()
+    datejoined = models.DateField(auto_now_add = True)
     rating = models.DecimalField(decimal_places = 2, max_digits = 3)
 
     def __str__(self):
@@ -52,6 +52,9 @@ class Review(models.Model):
     captions = models.BooleanField(default = False) # If true, use video captions as body of review
 
     def save(self, *args, **kwargs):
+        if self.rating < 1 or self.rating > 5:
+            self.rating = 3
+            
         if self.ytlink == "":
             self.ytlink = None
 
