@@ -24,8 +24,9 @@ class GameForm(forms.ModelForm):
 		fields = ('name', 'desc')
 
 class ReviewForm(forms.ModelForm):
+	RATINGS = [(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')]
 	title = forms.CharField(help_text="Review Title:")
-	rating = forms.IntegerField(help_text = "Rating:")
+	rating = forms.IntegerField(help_text = "Rating:", widget = forms.RadioSelect(choices = RATINGS))
 	ytlink = forms.URLField(help_text = "Youtube Link:", required=False)
 
 	def clean_rating(self):
