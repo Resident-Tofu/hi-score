@@ -229,7 +229,6 @@ def show_account(request):
 
 @login_required
 def like_review(request):
-    # context = RequestContext(request)
     review_id = None
     if request.method == 'GET':
         review_id = request.GET['review_id']

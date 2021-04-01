@@ -60,11 +60,11 @@
 
                     <div>
                         <p>
-                            <b id="like_count">{{ review.likes }}</b> people like this review
+                            <b id="like_count">{{ review.likes }}</b>
                         
                             {% if user.is_authenticated %}
-                                <button id ="likes" 
-                                        data-catid="{{review.id}}" 
+                                <button id ="like_btn" 
+                                        data-reviewid="{{review.id}}" 
                                         class="btn btn-mini btn-primary" 
                                         type="button">
                                     Like

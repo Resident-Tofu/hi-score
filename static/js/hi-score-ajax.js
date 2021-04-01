@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('#like_btn').click(function(){
         var reviewid;
         reviewid = $(this).attr("data-reviewid");
-         $.get('/hi-score/like_review/', {review_id: reviewid}, 
+         $.get('/hi-score/like-review/', {review_id: reviewid}, 
          function(data){
                    $('#like_count').html(data);
                    $('#likes').hide();

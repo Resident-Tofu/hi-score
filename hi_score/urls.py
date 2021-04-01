@@ -20,5 +20,5 @@ urlpatterns = [
     path('myaccount/', views.show_account, name='my_account'),
     path('accounts/<slug:account_name_slug>/', views.show_account, name='show_account'),
     path('logout/', views.user_logout, name='logout'),
-    path('like_review/', views.like_review, name='like_review'),
+    path('like-review/', views.like_review, name='like_review'),
 ]
