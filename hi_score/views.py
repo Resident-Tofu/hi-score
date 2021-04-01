@@ -167,7 +167,6 @@ def signup(request):
 
 			# If user uploaded a picture, add it, then save profile to db
 			if 'picture' in request.FILES:
-				print("Picture provided!!!!!!!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 				profile.picture = request.FILES['picture']
 
 			profile.save()

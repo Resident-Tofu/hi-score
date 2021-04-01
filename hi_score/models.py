@@ -47,7 +47,7 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField(default = 3)
     likes = models.PositiveIntegerField(default = 0)
     dislikes = models.PositiveIntegerField(default = 0)
-    ytlink = models.URLField(default = None, null = True) # Validate using forms
+    ytlink = models.URLField(default = None, null = True, blank = True) # Validate using forms
     embed = models.CharField(max_length = 128, default = None, null = True)
     captions = models.BooleanField(default = False) # If true, use video captions as body of review
 
