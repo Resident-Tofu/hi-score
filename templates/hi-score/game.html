@@ -60,11 +60,11 @@
 
                     <div>
                         <p>
-                            <b id="like_count">{{ review.likes }}</b> people like this review
+                            <b id="like_count">{{ review.likes }}</b>
                         
                             {% if user.is_authenticated %}
-                                <button id ="likes" 
-                                        data-catid="{{review.id}}" 
+                                <button id ="like_btn" 
+                                        data-reviewid="{{review.id}}" 
                                         class="btn btn-mini btn-primary" 
                                         type="button">
                                     Like
@@ -72,18 +72,6 @@
                             {% endif %}
                         </p>
                     </div>
-                    
-                    <!-- <div>
-                        {% if user.is_authenticated %}
-                        <button id="like_btn"
-                                    data-reviewid="{{ review.id }}"
-                                    class="btn btn-primary btn-sm"
-                                    type="button">
-                            Like 
-                        </button> 
-                        <strong id="like_count">{{ review.likes }}</strong>
-                        {% endif %} 
-                    </div> -->
 
                     {% if review.ytlink %}
                         <iframe width="560" height="315" src={{ review.embed }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
