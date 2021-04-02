@@ -15,11 +15,14 @@ class GenreForm(forms.ModelForm):
 class GameForm(forms.ModelForm):
 	name = forms.CharField(max_length = 128, help_text="Name:")
 	#TODO Nice dropdown list for genres, button to add another
-	GENRES = []
-	for genre in Genre.objects.all():
-		GENRES.append((genre.name, genre.name))
+	# GENRES = []
+	# for genre in Genre.objects.all():
+	# 	GENRES.append((genre.name, genre.name))
+
+	# for g in GENRES:
+	# 	print(g)
 	
-	genres = forms.CharField(max_length = 64, help_text="Genre:", widget = forms.SelectMultiple(choices = GENRES))
+	genres = forms.ModelMultipleChoiceField(queryset = Genre.objects.all(), help_text="Genre:", widget = forms.CheckboxSelectMultiple)
 	desc = forms.CharField(widget=forms.Textarea, help_text="Description:")
 	slug = forms.SlugField(widget=forms.HiddenInput(), required=False)
 
@@ -28,7 +31,6 @@ class GameForm(forms.ModelForm):
 		fields = ('name', 'desc', 'genres')
 
 class ReviewForm(forms.ModelForm):
-	#RATINGS = [(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')]
 	RATINGS = []
 	for i in range(1, 6):
 		RATINGS.append((i, i * "⭐"))
