@@ -41,7 +41,7 @@ $(document).ready(function() {
         }).fail(function(response) {
             captions.text(response); // Handle case when captions could not be obtained
         });
-
     });
+
 });
 
