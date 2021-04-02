@@ -7,7 +7,7 @@ $(document).ready(function() {
          $.get('/hi-score/like-review/', {review_id: reviewid}, 
          function(data){
                    $('#like_count').html(data);
-                   $('#likes').hide();
+                   document.getElementById("like_btn").disabled = true;
                });
     });
     
