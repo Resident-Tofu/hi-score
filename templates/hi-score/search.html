@@ -6,33 +6,16 @@
 {% endblock %}
 
 {% block body_block %}
-    <div>
-        <div class="container">
-            <h1>Hi-Score Search</h1>
-        </div>
-    </div>
-    <div>
-        <form id="user-form" 
-              method="post" 
-              action="{% url 'hi-score:search' %}">
-            {% csrf_token %}
+    <h1>Hi-Score Search</h1>
 
-            <div class="form-group">
-                <input type="text" 
-                       size="50" 
-                       name="query" 
-                       id="query" />
-            </div>
+    <form method="post" action="{% url 'hi-score:search' %}">
+        {% csrf_token %}
+        <input type="text" size="50" name="query" />
+        <button type="submit" name ="submit">Search</button>
+    </form>
 
-            <button type="submit" name ="submit">
-                Search
-            </button>
-        </form>
-    </div>
-    <div>
-        {% if result_list %}
+    {% if result_list %}
         <h2>Results</h2>
-
         <div>
             {% for result in result_list %}
                 <div>
@@ -47,5 +30,5 @@
             {% endfor %}
         </div>
     {% endif %}
-</div>
+
 {% endblock %}

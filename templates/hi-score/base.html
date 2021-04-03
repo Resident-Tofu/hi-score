@@ -30,13 +30,16 @@
 	 		<li><a href="{% url 'hi-score:home' %}">Home</a></li>
 	 		<li><a href="{% url 'hi-score:genres' %}">Genres</a></li>
 	 		<li><a href="{% url 'hi-score:show_games' %}">Games</a></li>
-            <li><a href="{% url 'hi-score:search' %}">Search</a></li>
 	 	</div>
 	 	<div class="logo">
 	 		<img src="{% static 'images/logo.png' %}" alt="Hi-Score" style="width:160px;height:80px">
 	 	</div>
 	 	<div class="search">
-	 		<input type="text" placeholder="Search..." name="search" style="width:200px;height:30px">
+            <form method="post" action="{% url 'hi-score:search' %}">
+                {% csrf_token %}
+	 		    <input type="text" placeholder="Search..." name="query" style="width:200px;height:30px">
+                <button type="submit">Go</button>
+            </form>
 	 	</div>
 	 	<div class="footer">
 	 		<a href="{% url 'hi-score:contact_us' %}" style="color: #5900B3">Contact Us</a>
