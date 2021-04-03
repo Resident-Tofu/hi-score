@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+from hi_score.models import User, UserProfile
 from hi_score.models import Genre
 from hi_score.models import Game
 from hi_score.models import Review
@@ -218,10 +219,23 @@ def user_logout(request):
 	return redirect(reverse('hi-score:home'))
 
 @login_required
-def show_account(request):
+def show_account_old(request):
 	context_dict = {}
 	# context_dict['aboutme'] = user_profile.aboutme
 	context_dict['reviews'] = Review.objects.filter(user=request.user)
+	return render(request, 'hi-score/profile.html', context=context_dict)
+
+	# return HttpResponse("This is the myaccount page")
+
+
+@login_required
+def show_account(request, user_name):
+	context_dict = {}
+	# context_dict['aboutme'] = user_profile.aboutme
+	user = User.objects.filter(username=user_name)
+	context_dict['user'] = user
+	context_dict['slug'] = user_name
+	context_dict['user_reviews'] = Review.objects.filter(user=user)
 	return render(request, 'hi-score/profile.html', context=context_dict)
 
 	# return HttpResponse("This is the myaccount page")
