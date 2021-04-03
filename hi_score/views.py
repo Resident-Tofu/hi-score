@@ -232,10 +232,12 @@ def show_account_old(request):
 def show_account(request, user_name):
 	context_dict = {}
 	# context_dict['aboutme'] = user_profile.aboutme
-	user = User.objects.filter(username=user_name)
-	context_dict['user'] = user
+	user = User.objects.get(username=user_name)
+	context_dict['u'] = user
 	context_dict['slug'] = user_name
-	context_dict['user_reviews'] = Review.objects.filter(user=user)
+	context_dict['user_reviews'] = list(Review.objects.filter(user=user).all())
+	for i in context_dict["user_reviews"]:
+		print(i)
 	return render(request, 'hi-score/profile.html', context=context_dict)
 
 	# return HttpResponse("This is the myaccount page")
