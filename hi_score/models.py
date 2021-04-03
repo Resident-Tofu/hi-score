@@ -10,6 +10,11 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to='profile_images', blank=True)
     datejoined = models.DateField(auto_now_add = True)
     rating = models.DecimalField(decimal_places = 2, max_digits = 3)
+    slug = models.SlugField(unique = True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.user.username)
+        super(UserProfile, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.user.username
