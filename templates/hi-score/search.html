@@ -1,0 +1,51 @@
+{% extends 'hi-score/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    Search
+{% endblock %}
+
+{% block body_block %}
+    <div>
+        <div class="container">
+            <h1>Hi-Score Search</h1>
+        </div>
+    </div>
+    <div>
+        <form id="user-form" 
+              method="post" 
+              action="{% url 'hi-score:search' %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <input type="text" 
+                       size="50" 
+                       name="query" 
+                       id="query" />
+            </div>
+
+            <button type="submit" name ="submit">
+                Search
+            </button>
+        </form>
+    </div>
+    <div>
+        {% if result_list %}
+        <h2>Results</h2>
+
+        <div>
+            {% for result in result_list %}
+                <div>
+                    <h3>
+                        {% if result.type == "Genre" %}
+                            <a href="{% url 'hi-score:show_genre' result.slug %}">{{ result.text }} :: {{ result.type }}</a>
+                        {% else %}
+                            <a href="{% url 'hi-score:show_game' result.slug %}">{{ result.text }} :: {{ result.type }}</a>
+                        {% endif %}
+                    </h3>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
