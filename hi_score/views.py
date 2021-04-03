@@ -239,4 +239,15 @@ def like_review(request):
             review.save()
     return HttpResponse(review.likes)
 
+def search(request):
+	result_list = []
 
+	if request.method == "POST":
+		query = request.POST["query"].strip()
+		if query:
+			for genre in Genre.objects.filter(name__contains = query): #Genre.objects.get(headline__icontains = query)
+				result_list.append({"text": str(genre), "type": "Genre", "slug": genre.slug})
+			for game in Game.objects.filter(name__contains = query): #Game.objects.get(headline__icontains = query)
+				result_list.append({"text": str(game), "type": "Game", "slug": game.slug})
+
+	return render(request, "hi-score/search.html", {"result_list": result_list})
