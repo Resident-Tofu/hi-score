@@ -29,6 +29,7 @@ class ReviewForm(forms.ModelForm):
 	title = forms.CharField(help_text="Review Title:")
 	rating = forms.IntegerField(help_text = "Rating:", widget = forms.RadioSelect(choices = RATINGS))
 	ytlink = forms.URLField(help_text = "Youtube Link:", required=False)
+	captions = forms.BooleanField(help_text = "Generate review from video captions?")
 
 	def clean_rating(self):
 		rating = self.cleaned_data['rating']
@@ -38,7 +39,7 @@ class ReviewForm(forms.ModelForm):
 
 	class Meta:
 		model = Review
-		fields = ('title', 'body', 'rating', 'ytlink' )
+		fields = ('title', 'body', 'rating', 'ytlink', 'captions' )
 
 class UserForm(forms.ModelForm):
 	username = forms.CharField(max_length = 64)
