@@ -45,11 +45,12 @@ class Review(models.Model):
     body = models.TextField()
     date = models.DateField(auto_now = True) # using over `auto_now_add` to update on user edit
     rating = models.PositiveSmallIntegerField(default = 3)
-    likes = models.PositiveIntegerField(default = 0)
+    liked_by = models.ManyToManyField(User, default=None, blank=True, related_name="liked_by")
     dislikes = models.PositiveIntegerField(default = 0)
     ytlink = models.URLField(default = None, null = True, blank = True) # Validate using forms
     embed = models.CharField(max_length = 128, default = None, null = True)
     captions = models.BooleanField(default = False) # If true, use video captions as body of review
+    slug = models.SlugField(unique = True)
 
     def save(self, *args, **kwargs):
         if self.rating < 1 or self.rating > 5:
@@ -57,6 +58,9 @@ class Review(models.Model):
             
         if self.ytlink == "":
             self.ytlink = None
+
+        self.slug = slugify(self.game.name)
+        self.slug += "_id=" + slugify(self.id)
 
         super(Review, self).save(*args, **kwargs)
     

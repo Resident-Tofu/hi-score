@@ -228,7 +228,7 @@ def show_account(request):
 
 
 @login_required
-def like_review(request):
+def like_review_old(request):
     review_id = None
     if request.method == 'GET':
         review_id = request.GET['review_id']
@@ -238,6 +238,24 @@ def like_review(request):
             review.likes += 1
             review.save()
     return HttpResponse(review.likes)
+
+
+@login_required
+def like_review(request, review_slug):
+	review = Review.objects.get(slug=review_slug)
+	if request.method == 'POST':
+		review_id = request.POST.get['review_id']
+		review = Review.objects.get(slug = review_slug)
+       
+		if user not in review.liked_by.all():
+			review.liked_by.add(user)
+		else:
+			# Unlike Post
+			review.liked_by.remove(user)
+	# x = review_slug.rfind("_id=")
+	# game_name_slug = review_slug[:x]
+	return HttpResponse(review.likes)
+	# return redirect("hi-score:games/game_name_slug")
 
 def search(request):
 	result_list = []

@@ -28,7 +28,8 @@
 <div class="gameinfo">
 {% if name %}
     <div class="welcome">
-        <h2>{{ name }}</h2>
+        <h2>{{ name }} ID={{id}}</h2>
+        
         <h3>{{ desc }}</h3>
         <a href={% url 'hi-score:review_game' slug %}>Leave a Review!</a>
     </div>
@@ -48,7 +49,7 @@
                     <h5>{{ review.date }}</h5>
                 </div>
                 <div class="rtext">
-                    <h2>{{ review.title }}</h2>
+                    <h2>{{ review.title }} + {{review.slug}}</h2>
                     <h2 class="stars" data-rat="{{ review.rating }}">&#11088;&#11088;&#11088;</h2>
 
                     {% if review.captions %}
@@ -63,12 +64,32 @@
                             <b id="like_count">{{ review.likes }}</b>
                         
                             {% if user.is_authenticated %}
-                                <button id ="like_btn" 
+                                
+                                <form action="{% url 'hi-score:like_review' slug %}" method='POST'>
+                                    {% csrf_token %}
+                                    <input type='hidden' name='review_id' value='{{review.id}}'>
+                                    {% if user not in review.liked_by.all %}
+                                        <button class="btn btn-mini btn-primary" type="submit">
+                                            Like
+                                        </button>
+                                    <!-- Show Like Button -->
+                                    {% else %}
+                                    <!-- Show Unlike Button -->
+                                        <button class="btn btn-mini btn-primary" type="submit">
+                                            Unlike
+                                        </button>
+                                    {% endif %}
+                                </form>
+                                <Strong>Likes: {{review.liked_by.count}}</Strong>
+
+
+
+                                <!-- <button id ="like_btn" 
                                         data-reviewid="{{review.id}}" 
                                         class="btn btn-mini btn-primary" 
                                         type="button">
                                     Like
-                                </button>
+                                </button> -->
                             {% endif %}
                         </p>
                     </div>
