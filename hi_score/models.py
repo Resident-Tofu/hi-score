@@ -34,6 +34,7 @@ class Game(models.Model):
     name = models.CharField(max_length = 128, unique = True)
     genres = models.ManyToManyField(Genre)
     desc = models.TextField()
+    image = models.ImageField(upload_to='game_images', blank=True)
     slug = models.SlugField(unique = True)
 
     def save(self, *args, **kwargs):

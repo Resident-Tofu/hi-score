@@ -16,11 +16,12 @@ class GameForm(forms.ModelForm):
 	name = forms.CharField(max_length = 128, help_text="Name:")	
 	genres = forms.ModelMultipleChoiceField(queryset = Genre.objects.all(), help_text="Genre:", widget = forms.CheckboxSelectMultiple)
 	desc = forms.CharField(widget=forms.Textarea, help_text="Description:")
+	image = forms.ImageField(help_text="Picture:", required=False)
 	slug = forms.SlugField(widget=forms.HiddenInput(), required=False)
 
 	class Meta:
 		model = Game
-		fields = ('name', 'desc', 'genres')
+		fields = ('name', 'desc', 'genres', 'image')
 
 class ReviewForm(forms.ModelForm):
 	RATINGS = []

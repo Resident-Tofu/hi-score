@@ -12,7 +12,6 @@
 		<strong>You have enlisted successfully!</strong> 
 		<a href="{% url 'hi-score:user_login' %}">Login Here</a><br/>
 	{% else %}
-		<!-- <strong>enlist here!</strong><br /> -->
 		<form id="user_form" method="post" action="{% url 'hi-score:signup' %}" 
 		enctype="multipart/form-data">
 

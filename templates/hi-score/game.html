@@ -3,6 +3,11 @@
 
 
 {% block style_block %}
+
+    .welcome img {
+        float: right;
+    }
+
     .review {
         background-color: #5900B3;
         border: 2px solid gray;
@@ -28,7 +33,19 @@
 <div class="gameinfo">
 {% if name %}
     <div class="welcome">
+        {% if image %}
+            <img src="{{image.url}}" alt="Picture of Game" style="width:200px;height:200px">
+        {% endif %}
         <h2>{{ name }}</h2>
+        
+        <h3>Genres: 
+            {% if genres %}
+                {% for genre in genres %}
+                    {{genre}}
+                {% endfor %}
+            {% endif %}
+        </h2>
+
         <h3>{{ desc }}</h3>
         <a href={% url 'hi-score:review_game' slug %}>Leave a Review!</a>
     </div>
