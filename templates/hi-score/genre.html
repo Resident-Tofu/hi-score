@@ -2,6 +2,8 @@
 
 {% block body_block %}
 
+<h1>{{genre.name}} Games</h1>
+
 <div class="gamelist">
 {% if games %}
     <ul>
@@ -14,7 +16,7 @@
 {% else %}
     <strong>There are no games here yet.  Add the first!<br></strong>
 {% endif %}
-    <a href="{% url 'hi-score:add_game' %}">Add a Game</a>
+    <a href="{% url 'hi-score:add_game' genre.slug %}">Add a Game</a>
 </div>
 
 {% endblock %}

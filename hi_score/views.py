@@ -82,9 +82,19 @@ def review_game(request, game_name_slug):
 
 	return render(request, 'hi-score/review_game.html', {'form': form, 'name':game.name, 'slug': game_name_slug})
 
+# Games can either be added through /games/add-game, or /genres/genre/add-game.
+# If added the genre way, the form will be loaded with that genre autoselected.
 @login_required
-def add_game(request):
-	form = GameForm()
+def add_game(request, genre_name_slug=None):
+
+	# If a genre was provided, get name
+	if genre_name_slug:
+		genre = Genre.objects.get(slug=genre_name_slug)
+		genre_name = genre.name
+	else:
+		genre, genre_name = None, None
+		
+	form = GameForm(initial={"genres":genre})
 
 	# A HTTP POST?
 	if request.method == 'POST':
@@ -98,7 +108,9 @@ def add_game(request):
 		# Form had errors, print to terminal
 		print(form.errors)
 
-	return render(request, 'hi-score/add_game.html', {'form': form})
+	return render(request, 'hi-score/add_game.html', {'form': form, 'genre':genre_name})
+
+
 
 
 def show_genres(request):
