@@ -1,3 +1,4 @@
+import re
 from django import forms
 from django.contrib.auth.models import User
 from hi_score.models import Game, Genre, Review, UserProfile
@@ -32,11 +33,23 @@ class ReviewForm(forms.ModelForm):
 	ytlink = forms.URLField(help_text = "Youtube Link:", required=False)
 	captions = forms.BooleanField(help_text = "Generate review from video captions?", required=False)
 
-	def clean_rating(self):
-		rating = self.cleaned_data['rating']
-		if rating < 1 or rating > 5:
-			raise forms.ValidationError("Rating must be between 1 and 5")
-		return rating
+	def clean(self):
+		super(ReviewForm, self).clean()
+
+		ytlink = self.cleaned_data.get('ytlink')
+		captions = self.cleaned_data.get('captions')
+		if ytlink:
+			match = re.match("(http(s)://www.youtube\.com/watch\?v=)([a-zA-Z0-9\-_])", ytlink)
+
+			if not match:
+				self._errors['ytlink'] = self.error_class(['Please enter a valid YouTube URL'])
+		
+		# If captions have been ticked, but no video has been provided
+		elif captions:
+			self._errors['captions'] = self.error_class(['No video URL has been provided'])
+
+		return self.cleaned_data
+
 
 	class Meta:
 		model = Review
