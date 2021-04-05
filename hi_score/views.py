@@ -33,8 +33,6 @@ def contact_us(request):
 
 def show_games(request):
 	game_list = Game.objects.order_by("-name")
-	for i in game_list:
-		print(i.name)
 	context_dict = {"games": game_list}
 	response = render(request, 'hi-score/games.html', context=context_dict)
 	return response
@@ -43,7 +41,8 @@ def show_game(request, game_name_slug):
 	game = Game.objects.get(slug = game_name_slug)
 	context_dict = {}
 	context_dict["name"] = game.name
-	context_dict["genres"] = game.genres
+	context_dict["image"] = game.image
+	context_dict["genres"] = [i for i in game.genres.all()]
 	context_dict["desc"] = game.desc
 	review_list = Review.objects.filter(game = game)
 	context_dict["reviews"] = review_list
@@ -98,10 +97,16 @@ def add_game(request, genre_name_slug=None):
 
 	# A HTTP POST?
 	if request.method == 'POST':
-		form = GameForm(request.POST)
+		form = GameForm(request.POST, request.FILES)
 
 	if form.is_valid():
-		form.save(commit=True)
+		game = form.save()
+
+		if 'image' in request.FILES:
+			game.image = request.FILES['image']
+
+		game.save()
+
 		return redirect(reverse('hi-score:show_games'))
 
 	else:
@@ -163,8 +168,7 @@ def signup(request):
 		profile_form = UserProfileForm(request.POST)
 
 		if user_form.is_valid() and profile_form.is_valid():
-			
-			dateJoined = date.today()
+
 			# Save the form data to the database
 			user = user_form.save()
 
@@ -176,7 +180,7 @@ def signup(request):
 			# Create the one-to-one relationship between the profile and user
 			profile = profile_form.save(commit=False)
 			profile.user = user
-			profile.datejoined = dateJoined
+			profile.datejoined = date.today()
 			profile.rating = 1.2
 
 			# If user uploaded a picture, add it, then save profile to db
@@ -248,8 +252,6 @@ def show_account(request, user_name):
 	context_dict['u'] = user
 	context_dict['slug'] = user_name
 	context_dict['user_reviews'] = list(Review.objects.filter(user=user).all())
-	for i in context_dict["user_reviews"]:
-		print(i)
 	return render(request, 'hi-score/profile.html', context=context_dict)
 
 	# return HttpResponse("This is the myaccount page")
