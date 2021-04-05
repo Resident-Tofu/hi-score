@@ -132,3 +132,4 @@ dmypy.json
 /hi_score/migrations/*
 '.DS_Store'
 /media/profile_images/*
+*.key
