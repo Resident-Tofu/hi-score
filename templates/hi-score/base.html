@@ -41,9 +41,7 @@
                 <button type="submit">Go</button>
             </form>
 	 	</div>
-	 	<div class="footer">
-	 		<a href="{% url 'hi-score:contact_us' %}" style="color: #5900B3">Contact Us</a>
-	 	</div>
+	 	
 	 	<div class="login">
 	 		{% if user.is_authenticated %}
 	 			<h3>{{user.username}}</h3>
@@ -66,6 +64,9 @@
 	 	<div>
         {% block body_block %}
         {% endblock %}
+        <div class="footer">
+            <a href="{% url 'hi-score:contact_us' %}" style="color: #5900B3">Contact Us</a>
+        </div>
         </div>
 
         <script src="{% static "js/jquery-3.6.0.min.js" %}" crossorigin="anonymous"></script>
