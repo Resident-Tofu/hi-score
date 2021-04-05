@@ -36,9 +36,9 @@
                     <b id="like_count">{{ review.likes }}</b>
                 
                     {% if user.is_authenticated %}
-                        <button id ="like_btn" 
-                                data-reviewid="{{review.id}}" 
-                                class="btn btn-mini btn-primary" 
+                        <button data-reviewid="{{review.id}}" 
+                                class="like_btn" 
+                                id="btn_id" 
                                 type="button">
                             Like
                         </button>
