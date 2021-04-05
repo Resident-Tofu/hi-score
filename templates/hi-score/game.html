@@ -1,6 +1,9 @@
 {% extends 'hi-score/base.html' %}
 {% load static %}
 
+{% load review_tags %}
+
+
 
 {% block style_block %}
 
@@ -8,24 +11,7 @@
         float: right;
     }
 
-    .review {
-        background-color: #5900B3;
-        border: 2px solid gray;
-        color: white;
-        margin: 10px;
-    }
-
-    .reviewer {
-        width: 20%;
-        margin: 5px;
-        margin-right: 10px;
-        float: left;
-    }
-
-    .rtext {
-        clear: none;
-        right: 20%;
-    }
+    
 
 {% endblock %}
 
@@ -34,7 +20,7 @@
 {% if name %}
     <div class="welcome">
         {% if image %}
-            <img src="{{image.url}}" alt="Picture of Game" style="width:200px;height:200px">
+            <img src="{{image.url}}" alt="Picture of Game" style="width:350px;">
         {% endif %}
         <h2>{{ name }}</h2>
         
@@ -51,64 +37,7 @@
     </div>
     {% for review in reviews %}
         <table>
-            <div class="review">
-                <div class="reviewer">
-
-                    <h3>{{ review.user.username}}</h3>
-                    
-                    <a href = "{% url "hi-score:show_account" review.user.username%}">
-                    {% if review.user.userprofile.picture %}
-                        <img src = "{{ review.user.userprofile.picture.url }}" alt="Profile Pic" style="width:60px;height:60px">
-                    {% else %}
-                        <img src = "{% static 'images/profile.png' %}" alt="<No Pic>" style="width:60px;height:60px">
-                    {% endif %}
-                    </a>
-
-                    <h5>{{ review.date }}</h5>
-                </div>
-                <div class="rtext">
-                    <h2>{{ review.title }}</h2>
-                    <h2 class="stars" data-rat="{{ review.rating }}">&#11088;&#11088;&#11088;</h2>
-
-                    {% if review.captions %}
-                        <p class="cap" data-emb="{{ review.embed }}"></p>
-                    {% else %}
-                        <p>{{ review.body }}</p>
-                    {% endif %}
-
-
-                    <div>
-                        <p>
-                            <b id="like_count">{{ review.likes }}</b>
-                        
-                            {% if user.is_authenticated %}
-                                <button id ="like_btn" 
-                                        data-reviewid="{{review.id}}" 
-                                        class="btn btn-mini btn-primary" 
-                                        type="button">
-                                    Like
-                                </button>
-                            {% endif %}
-                        </p>
-                    </div>
-                    
-                    <!-- <div>
-                        {% if user.is_authenticated %}
-                        <button id="like_btn"
-                                    data-reviewid="{{ review.id }}"
-                                    class="btn btn-primary btn-sm"
-                                    type="button">
-                            Like 
-                        </button> 
-                        <strong id="like_count">{{ review.likes }}</strong>
-                        {% endif %} 
-                    </div> -->
-
-                    {% if review.ytlink %}
-                        <iframe width="560" height="315" src={{ review.embed }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    {% endif %}
-                </div>
-            </div>
+            {% show_review review False user %}
         </table>
     {% endfor %}
 {% else %}

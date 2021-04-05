@@ -1,5 +1,6 @@
 {% extends 'hi-score/base.html' %}
 {% load static %}
+{% load review_tags %}
 
 {% block title_block %}
     {{u.username}}
@@ -20,10 +21,9 @@
 
     
     {% if user_reviews %}
+        <h2>Reviews: </h2>
         {% for review in user_reviews %}
-            <h2>{{ review.title}}</h3>
-            <h3>{{review.body}}</h2>
-            <br>
+            {% show_review review True user %}
         {% endfor %}
     {% endif %}
     
