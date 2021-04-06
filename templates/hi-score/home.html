@@ -5,8 +5,8 @@
 <div class="welcome">
 <h2><p>Hello {{ user.get_username }}-- this is the front page</p></h2>
 <h3><u>Top Games</u></h3>
-	{% for game in game_list %}
-		<a href="{% url 'hi-score:show_game' game.slug %}">{{game.name }}</a><br/>
+	{% for game in games %}
+		<a href="{% url 'hi-score:show_game' game.slug %}">{{game.name}}</a><br/>
 	{% endfor %}
 </div>
 
