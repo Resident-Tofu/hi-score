@@ -69,6 +69,8 @@ def review_game(request, game_name_slug):
 		if review.ytlink:
 			# Youtube videos can be embedded by adding /embed before the watch code
 			pos = review.ytlink.rfind('=')
+			if pos == -1:
+				pos = review.ytlink.rfind('/')
 			review.embed = f"https://www.youtube.com/embed/{review.ytlink[pos+1 :]}"
 			
 		review.save()

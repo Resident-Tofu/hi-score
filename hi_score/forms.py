@@ -40,6 +40,8 @@ class ReviewForm(forms.ModelForm):
 		captions = self.cleaned_data.get('captions')
 		if ytlink:
 			match = re.match("(http(s)://www.youtube\.com/watch\?v=)([a-zA-Z0-9\-_])", ytlink)
+			if not match:
+				match = re.match("(http(s)://youtu\.be/)([a-zA-Z0-9\-_])", ytlink)
 
 			if not match:
 				self._errors['ytlink'] = self.error_class(['Please enter a valid YouTube URL'])
